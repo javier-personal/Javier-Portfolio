@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact | Javier Tan</title>
+    <meta name="description" content="Get in touch with Javier Tan." />
+    <link rel="stylesheet" href="../css/base.css?v=3" />
+    <link rel="stylesheet" href="../css/components.css?v=3" />
+    <link rel="stylesheet" href="../css/pages.css?v=3" />
+  </head>
+  <body class="glass-page" data-root="../" data-nav="contact.html">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" id="site-header"></header>
+    <main id="main" class="page-wrap contact-wrap">
+      <h1 class="page-title">Contact Me</h1>
+      <p class="lead">
+        Have a question or want to collaborate? Feel free to reach out through the form below!
+      </p>
+      <form
+        class="form-card glass"
+        action="mailto:javtanweien@gmail.com"
+        method="POST"
+        enctype="text/plain"
+        id="form"
+      >
+        <div class="field">
+          <label for="name">Name</label
+          ><input
+            id="name"
+            name="name"
+            type="text"
+            required
+            autocomplete="name"
+            placeholder="Enter your name"
+          />
+        </div>
+        <div class="field">
+          <label for="email">Email</label
+          ><input
+            id="email"
+            name="email"
+            type="email"
+            required
+            autocomplete="email"
+            placeholder="Enter your email"
+          />
+        </div>
+        <div class="field">
+          <label for="message">Message</label
+          ><textarea
+            id="message"
+            name="message"
+            rows="5"
+            required
+            placeholder="Type your message here"
+          ></textarea>
+        </div>
+        <p class="form-status" id="status" role="status"></p>
+        <button class="btn" type="submit" id="send">Send Message</button>
+      </form>
+      <section class="contact-info glass">
+        <h2>Contact Information</h2>
+        <ul class="contact-list">
+          <li data-icon="mail"><a href="mailto:javtanweien@gmail.com">javtanweien@gmail.com</a></li>
+          <li data-icon="phone"><a href="tel:+6591473081">+65 9147 3081</a></li>
+        </ul>
+        <div class="social">
+          <a
+            href="https://www.instagram.com/jvt._we"
+            target="_blank"
+            rel="noopener"
+            aria-label="Instagram (opens in a new tab)"
+            data-icon="instagram"
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/javier-tan-166142273"
+            target="_blank"
+            rel="noopener"
+            aria-label="LinkedIn (opens in a new tab)"
+            data-icon="linkedin"
+          ></a>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer glass">
+      <p>
+        &copy; <span id="year">2026</span> Javier Tan. All rights reserved. Fully coded website 😄
+      </p>
+    </footer>
+    <button class="to-top" aria-label="Back to top"></button>
+    <script src="../JS/site.js?v=3"></script>
+  </body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Task 2: Departmental Dashboard Development | OCBC Internship</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f6fa;
+    }
+
+    header {
+      background: #e60012;
+      color: white;
+      padding: 20px;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .container {
+      padding: 30px;
+      max-width: 960px;
+      margin: auto;
+    }
+
+    .month-select {
+      margin-bottom: 20px;
+    }
+
+    select {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    }
+
+    th, td {
+      padding: 14px 12px;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+      font-size: 15px;
+    }
+
+    th {
+      background: #f0f0f0;
+      font-weight: 600;
+    }
+
+    tr:hover {
+      background: #fafafa;
+    }
+
+    .expand-row {
+      background: #fff6f6;
+      display: none;
+    }
+
+    .expand-content {
+      padding: 20px;
+      border-top: 1px solid #ddd;
+    }
+
+    .expand-content h4 {
+      color: #a31921;
+      margin-top: 0;
+    }
+
+    .btn {
+      background: none;
+      border: none;
+      color: #e60012;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .attachment {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #444;
+    }
+
+    .attachment a {
+      color: #e60012;
+      text-decoration: none;
+    }
+
+    .attachment a:hover {
+      text-decoration: underline;
+    }
+
+    .back-btn{
+      display: inline-block;
+      background: #e60012;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      margin-top: 20px;
+      margin-left: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+        overflow-x: auto;
+      }
+
+      table {
+        margin: 0 auto;
+        min-width: 600px; /* ensures scrolling for narrow screens */
+      }
+
+      .expand-content {
+        font-size: 10px;  /* shrink expanded paragraph size */
+      }
+
+      th, td {
+        font-size: 13px;
+      }
+    }
+
+    .overview { background: white; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.05); padding: 18px 22px; margin-bottom: 24px; font-size: 15px; line-height: 1.55; }
+    .overview h3 { margin: 0 0 8px; color: #a31921; font-size: 18px; }
+    .overview p { margin: 0 0 8px; }
+    .overview ul { margin: 4px 0 10px; padding-left: 20px; }
+    .overview li { margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    OCBC Task 2 E-Statement - Dashboard Development
+  </header>
+
+  <a class= 'back-btn' href="ocbc-intern.html">
+      ← Back to OCBC intern home
+  </a>
+
+  <div class="container">
+
+    <div class="month-select">
+      <label for="month">Select Month:</label>
+      <select id="month" onchange="filterMonth()">
+        <option value="all">All Months</option>
+        <option value="Mar">Mar (Requirement)</option>
+        <option value="Apr">Apr (Analysis)</option>
+        <option value="May">May (SQL)</option>
+        <option value="Jun">Jun (Dashboard)</option>
+        <option value="Jul">Jul (Testing)</option>
+        <option value="Aug">Aug (Deployment)</option>
+      </select>
+      <p style="font-size: 14px; color: #000000; margin-top: 6px;">
+        (Each month reflects a project phase, from user requirements to deployment)
+      </p>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Ref No.</th>
+          <th>Phase</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- Row 1 -->
+        <tr data-month="Mar">
+          <td>01 Mar 2025</td>
+          <td>Requirement Gathering with Stakeholders</td>
+          <td>REF001</td>
+          <td>Requirement</td>
+          <td><button class="btn" onclick="toggle('row1')">View</button></td>
+        </tr>
+        <tr id="row1" class="expand-row">
+          <td colspan="5">
+            <div class="expand-content">
+              <h4>Requirement Gathering &amp; Business Understanding</h4>
+              <p>
+                Held calls and workshops with stakeholders to understand department operations, SLA tracking, channel performance and key metrics. Agreed the scope, reports, visuals and acceptance criteria, and used PowerPoint mockups to gather feedback before building.
+              </p>
+              <img src="../images/Task 2/ppt-dashboard2.png" alt="Dashboard Discussion" style="width:99%;"/>
+            </div>
+          </td>
+        </tr>
+
+
+        <!-- Row 2 -->
+        <tr data-month="Apr">
+          <td>01 Apr 2025</td>
+          <td>Preliminary Analysis</td>
+          <td>REF002</td>
+          <td>Data Analysis</td>
+          <td><button class="btn" onclick="toggle('row2')">View</button></td>
+        </tr>
+        <tr id="row2" class="expand-row">
+          <td colspan="5">
+            <div class="expand-content">
+              <h4>Preliminary Analysis</h4>
+              <p>
+                Profiled sample data in Excel to find missing values, inconsistencies and formatting issues, and shared the findings with stakeholders. These shaped the cleansing needed before ingestion and the SQL view logic.
+              </p>
+              <img src="../images/Task 2/excel.png" alt="Preliminary Data Analysis" style="width:99%;"/>
+            </div>
+          </td>
+        </tr>
+
+
+        <!-- Row 3 -->
+        <tr data-month="May">
+          <td>01 May 2025</td>
+          <td>Hive SQL View Developed</td>
+          <td>REF003</td>
+          <td>SQL</td>
+          <td><button class="btn" onclick="toggle('row3')">View</button></td>
+        </tr>
+        <tr id="row3" class="expand-row">
+          <td colspan="5">
+            <div class="expand-content">
+              <h4>SQL View Logic</h4>
+              <p>Iterated with users to confirm the data, columns and transformations required, then translated the business logic into Hive SQL views (using CTEs) that drive the dashboard.</p>
+              <img src="../images/Task 2/view-ddl2.jpg" alt="View Code" style="width:99%;"/>
+              <!--
+              <div class="attachment">
+                📄 <a href="#">View SQL Script</a>
+              </div>
+             -->
+            </div>
+          </td>
+        </tr>
+
+        <!-- Row 4 -->
+        <tr data-month="Jun">
+          <td>01 June 2025</td>
+          <td>Dashboard Visual Completed</td>
+          <td>REF004</td>
+          <td>Dashboard</td>
+          <td><button class="btn" onclick="toggle('row4')">View</button></td>
+        </tr>
+        <tr id="row4" class="expand-row">
+          <td colspan="5">
+            <div class="expand-content">
+              <h4>Finalized Dashboard</h4>
+              <p>Once the views were signed off, connected Power BI to the Hive/Hue data with Power Query M and imported it into the .pbix file. Built the visuals with DAX and Query M, and verified the design and logic with users before deployment.</p>
+              <img src="../images/Task 2/finalised-dashboard2.png" alt="Finalised-Dashboard" style="width:100%;"/>
+              <!--
+              <div class="attachment">
+                📊 <a href="#">Open Power BI Report</a>
+              </div>
+             -->
+            </div>
+          </td>
+        </tr>
+
+        <!-- Row 5 -->
+        <tr data-month="Jul">
+          <td>01 July 2025</td>
+          <td>User Testing Phase</td>
+          <td>REF005</td>
+          <td>Testing</td>
+          <td><button class="btn" onclick="toggle('row5')">View</button></td>
+        </tr>
+        <tr id="row5" class="expand-row">
+          <td colspan="5">
+            <div class="expand-content">
+              <h4>User Testing &amp; Feedback</h4>
+              <p>
+                Users tested the dashboard for data accuracy, business logic and visuals. Feedback was applied iteratively to the transformations, SQL views and visuals, and metrics were validated by comparing Excel and SQL outputs against source data.
+              </p>
+              <!--<img src="../images/Task 2/finalised-dashboard2.png" alt="User Testing Dashboard" style="width:100%;"/>-->
+            </div>
+          </td>
+        </tr>
+
+
+         <!-- Row 6 -->
+        <tr data-month="Aug">
+          <td>01 August 2025</td>
+          <td>Deployment & Maintenance</td>
+          <td>REF006</td>
+          <td>Deployment</td>
+          <td><button class="btn" onclick="toggle('row6')">View</button></td>
+        </tr>
+        <tr id="row6" class="expand-row">
+          <td colspan="5">
+            <div class="expand-content">
+              <h4>Deployment &amp; Maintenance</h4>
+              <p>
+                After user sign-off, prepared the production artefacts: finalised SQL views, Power BI reports and documentation. Ongoing maintenance and support were planned for new requirements and consistent data quality.
+              </p>
+              <img src="../images/Task 2/dashboard-deployment-artefacts.jpeg" alt="Production Dashboard" style="width:25%;"/>
+            </div>
+          </td>
+        </tr>
+
+
+
+    </table>
+  </div>
+
+  <script>
+    function toggle(id) {
+      const row = document.getElementById(id);
+      row.style.display = row.style.display === 'table-row' ? 'none' : 'table-row';
+    }
+
+    function filterMonth() {
+      const selected = document.getElementById("month").value;
+      const rows = document.querySelectorAll("tbody tr");
+      rows.forEach(row => {
+        const month = row.getAttribute("data-month");
+        if (!month || selected === "all" || month === selected) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+        // Hide expanded rows when switching
+        if (row.classList.contains("expand-row")) {
+          row.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
+

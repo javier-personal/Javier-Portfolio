@@ -1,0 +1,159 @@
+{
+  "tasks": [
+    {
+      "id": "task1",
+      "label": "Task 1"
+    },
+    {
+      "id": "task2",
+      "label": "Task 2"
+    },
+    {
+      "id": "task3",
+      "label": "Task 3"
+    }
+  ],
+  "entries": [
+    {
+      "task": "task1",
+      "title": "Week 1-4 – Mastering User Communication (Task 1)",
+      "body": [
+        {
+          "text": "Meeting with users really helped me understand what they actually need from the dashboard and what questions they want answered. It made me realize how important it is to listen first before jumping into building."
+        },
+        {
+          "text": "Going through sample data gave me a clearer picture of what’s possible and what adjustments we need to make behind the scenes. Overall, it showed me that good communication and a solid understanding of data go hand in hand to create something truly useful. One of the challenges is learning how to communicate with the users independently, without the need of supervision from our supervisor."
+        },
+        {
+          "text": "I started shadowing my supervisor in the first few weeks which helped me to learn the ropes fast and the skills/knowledge needed to communicate with the user. Now I am able to hold calls and meetings independently without supervision."
+        }
+      ]
+    },
+    {
+      "task": "task1",
+      "title": "Week 5-8 – Data Preparation (Task 1)",
+      "body": [
+        {
+          "text": "Cleaning and formatting seemed simple at first, but I soon realized that one small mistake could break the entire pipeline. Creating schemas taught me to think ahead about structure and meaning, not just storage. Using BDMF made me appreciate the importance of audit trails, it's not just about loading data, but proving it's done right."
+        },
+        {
+          "text": "Documenting Linux commands on txt files helped me greatly as I can refer to them whenever needed, which eased the stress of remembering all commands and their functions. Now I am able to see the bigger picture of how everything connects, and also knowing how to start working with the data pipeline."
+        }
+      ]
+    },
+    {
+      "task": "task1",
+      "title": "Week 9-12 – Debugging With Purpose (Task 1)",
+      "body": [
+        {
+          "text": "During the data validation phase, one major problem I faced was debugging issues in the data pipeline. A single wrong number could stem from schema errors, ingestion problems, or logic mistakes."
+        },
+        {
+          "text": "Documenting correct and incorrect values for reference helped me troubleshoot efficiently. I learned to anticipate common errors and think proactively about preventing them in production, which helped me design safer, more automated processes."
+        }
+      ]
+    },
+    {
+      "task": "task1",
+      "title": "Week 13-16 – Delivering To Production (Task 1)",
+      "body": [
+        {
+          "text": "Deploying to production gave me a real understanding of how large companies ensure stability, automation, and control at scale. I learned what needs to be finalized before deployment, from SQL views to PBIX dashboards and ingestion paths."
+        },
+        {
+          "text": "The structured handover process highlighted the importance of planning, documenting, and ensuring the pipeline is fully reliable before going live."
+        }
+      ]
+    },
+    {
+      "task": "task1",
+      "title": "Week 13-16 – Cross-Team Collaboration (Task 1)",
+      "body": [
+        {
+          "text": "Working across teams made me understand how dependencies can affect timelines and data quality. Coordinating with both the BI team and DevOps team taught me the importance of clear documentation and proactive communication to avoid bottlenecks."
+        }
+      ]
+    },
+    {
+      "task": "task1",
+      "title": "Week 13-16 – Automation Mindset (Task 1)",
+      "body": [
+        {
+          "text": "I realized that thinking about automation early can save time and reduce errors. I started creating reusable SQL snippets and Excel templates that could be applied to future tasks, which improved efficiency and reduced manual mistakes."
+        }
+      ]
+    },
+    {
+      "task": "task2",
+      "title": "Week 1-4 – Learning Dashboard Planning (Task 2)",
+      "body": [
+        {
+          "text": "Before building any dashboard, I learned the process of gathering requirements, including the data schema, the nature and volume of the data, key metrics, and business logic. Mockups in PowerPoint helped confirm design before the build."
+        }
+      ]
+    },
+    {
+      "task": "task2",
+      "title": "Week 5-8 – Mastering SQL In A MNC Environment (Task 2)",
+      "body": [
+        {
+          "text": "Using complex SQL and CTEs taught me how to structure queries for maintainability and accuracy. Implementing my own logic with supervision showed that even as an intern, I could contribute meaningfully."
+        }
+      ]
+    },
+    {
+      "task": "task2",
+      "title": "Week 9-12 – Finalized Product (Task 2)",
+      "body": [
+        {
+          "text": "I learned how all components connect, from SQL to Power BI. DAX and Query M were new, but with online resources, I gained confidence to produce dashboards that meet user expectations."
+        }
+      ]
+    },
+    {
+      "task": "task2",
+      "title": "Week 9-12 – Iterative Feedback & Improvement (Task 2)",
+      "body": [
+        {
+          "text": "Engaging users iteratively helped me understand the importance of feedback loops. Each change improved clarity, usability, and business alignment, and taught me to embrace feedback rather than see it as criticism."
+        }
+      ]
+    },
+    {
+      "task": "task2",
+      "title": "Week 9-12 – Data Verification Practices (Task 2)",
+      "body": [
+        {
+          "text": "Validating dashboard metrics against source data taught me to be meticulous. Comparing Excel and SQL outputs highlighted discrepancies early, which improved the quality and reliability of the final dashboard."
+        }
+      ]
+    },
+    {
+      "task": "task3",
+      "title": "Mastering DevOps Tools & Workflow (Week 1–12)",
+      "body": [
+        {
+          "label": "Learning",
+          "text": "Hands-on experience with Jira, Confluence, Infinity, Jenkins, Bitbucket, and Agile sprint planning taught me the roles of each tool in managing lifecycle and collaboration."
+        },
+        {
+          "label": "Challenge",
+          "text": "Initially, I struggled to understand the connections between tools, processes, and workflows."
+        },
+        {
+          "label": "Solution",
+          "text": "I created internal workflow guides, checklists, and sought mentorship. Over time, I became confident navigating platforms and appreciated the structured DevOps process."
+        }
+      ]
+    },
+    {
+      "task": "task3",
+      "title": "DevOps Insights – Automation & Reliability (Task 3)",
+      "body": [
+        {
+          "text": "Understanding pre-deployment checks, automated approvals, and pipeline monitoring showed me how automation and governance prevent errors. I also realized the importance of documenting processes clearly for smoother handovers and consistent delivery."
+        }
+      ]
+    }
+  ]
+}

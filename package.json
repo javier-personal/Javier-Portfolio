@@ -1,0 +1,12 @@
+{
+  "name": "javier-tan-portfolio",
+  "private": true,
+  "description": "Static portfolio site. No runtime dependencies; Node is only used to regenerate pages from data/*.json.",
+  "scripts": {
+    "build": "node tools/build.js && npm run format",
+    "format": "prettier --write \"css/*.css\" \"JS/*.js\" \"tools/**/*.{js,html}\" \"data/*.json\" index.html \"HTML/*.html\""
+  },
+  "devDependencies": {
+    "prettier": "^3.0.0"
+  }
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task 3: DevOps &amp; Project Delivery | OCBC Internship</title>
+  <style>
+    :root { --bg: #121222; --card: #1d1d33; --card2: #292947; --red: #e60012; --text: #fff; --muted: #b4b4c6; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; line-height: 1.5; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+    .back-link { display: inline-block; padding: 10px 16px; border: 2px solid var(--red); border-radius: 8px; background: var(--card); color: #fff; text-decoration: none; font-size: 15px; }
+    .back-link:hover { background: var(--red); }
+    .header { text-align: center; margin: 28px 0 32px; }
+    .header h1 { margin: 0 0 8px; font-size: clamp(26px, 5vw, 40px); color: var(--red); }
+    .header p { margin: 0 auto; max-width: 640px; color: var(--muted); font-size: clamp(15px, 2.4vw, 18px); }
+    .card { background: var(--card); border-radius: 14px; padding: 24px; box-shadow: 0 0 6px rgba(0,0,0,.3); }
+    .kpis { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 32px; }
+    .kpi { display: flex; flex-direction: column; justify-content: center; min-height: 110px; }
+    .kpi .num { font-size: clamp(28px, 4vw, 38px); font-weight: 700; color: var(--red); line-height: 1.1; }
+    .kpi .num.text { font-size: clamp(20px, 3vw, 26px); }
+    .kpi .lbl { margin-top: 6px; color: var(--muted); font-size: 15px; }
+    .kpi .lbl b { color: #fff; font-weight: 600; }
+    section.block { margin-bottom: 32px; }
+    .eyebrow { display: flex; align-items: center; gap: 12px; margin: 0 0 16px; font-size: 20px; }
+    .eyebrow span { color: var(--red); font-weight: 700; letter-spacing: .08em; font-size: 14px; }
+    .stages { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .stage { text-align: center; padding: 20px 14px; background: var(--card2); border-radius: 12px; }
+    .stage .dot { width: 38px; height: 38px; margin: 0 auto 10px; border-radius: 50%; background: var(--red); display: flex; align-items: center; justify-content: center; font-weight: 700; }
+    .stage h3 { margin: 0; font-size: 17px; }
+    .stage p { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+    .gantt-scroll { overflow-x: auto; }
+    .gantt { min-width: 620px; }
+    .g-row { display: grid; grid-template-columns: 150px 1fr; align-items: center; gap: 12px; padding: 5px 0; }
+    .g-label { font-size: 14px; color: #ddd; }
+    .g-track { position: relative; height: 26px; border-radius: 6px; background: repeating-linear-gradient(90deg, #26263f 0, #26263f calc(100%/var(--days) - 1px), #32324f calc(100%/var(--days) - 1px), #32324f calc(100%/var(--days))); }
+    .g-bar { position: absolute; top: 3px; bottom: 3px; border-radius: 5px; background: var(--red); font-size: 12px; display: flex; align-items: center; padding: 0 8px; white-space: nowrap; overflow: hidden; }
+    .g-pending { position: absolute; left: 8px; top: 0; line-height: 26px; font-size: 12px; color: var(--muted); font-style: italic; }
+    .g-axis { display: grid; grid-template-columns: 150px 1fr; gap: 12px; margin-bottom: 6px; }
+    .g-days { display: grid; grid-template-columns: repeat(var(--days), 1fr); font-size: 12px; color: var(--muted); text-align: center; }
+    .tools { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .tools h3 { margin: 0; font-size: 19px; }
+    .tools .sub { margin: 2px 0 14px; color: var(--muted); font-size: 14px; }
+    .tools .used { border-top: 3px solid var(--red); }
+    .tools .learned { border-top: 3px solid #5a5a7e; }
+    .tool { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid #2c2c48; }
+    .tool:first-of-type { border-top: 0; }
+    .tool img { width: 64px; height: 40px; object-fit: contain; background: #fff; border-radius: 6px; padding: 4px; cursor: zoom-in; flex: none; }
+    .tool .ph { width: 64px; flex: none; }
+    .tool b { display: block; }
+    .tool span { color: var(--muted); font-size: 14px; }
+    .takeaway { text-align: center; padding: 32px 20px; border-top: 3px solid var(--red); }
+    .takeaway .k { color: var(--red); font-weight: 700; letter-spacing: .12em; font-size: 14px; }
+    .takeaway h2 { margin: 8px 0; font-size: clamp(21px, 3.6vw, 30px); }
+    .takeaway p { margin: 0 auto; max-width: 640px; color: var(--muted); }
+    #imageModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.85); z-index: 1000; justify-content: center; align-items: center; cursor: zoom-out; }
+    #imageModal img { max-width: 90vw; max-height: 90vh; border: 4px solid #fff; border-radius: 10px; background: #fff; }
+    @media (max-width: 900px) { .stages { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) {
+      .container { padding: 14px; }
+      .kpis, .tools { grid-template-columns: 1fr; }
+      .stages { grid-template-columns: 1fr; }
+      .card { padding: 18px; }
+      .g-row, .g-axis { grid-template-columns: 110px 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back-link" href="ocbc-intern.html"><b>← Back to OCBC intern home</b></a>
+
+    <header class="header">
+      <h1>DevOps &amp; Project Delivery</h1>
+      <p>Supporting project coordination, development and deployment through collaborative DevOps practices.</p>
+    </header>
+
+    <div class="kpis">
+      <div class="card kpi"><div class="num">4</div><div class="lbl">Delivery Stages</div></div>
+      <div class="card kpi"><div class="num">2</div><div class="lbl">Teams Involved</div></div>
+      <div class="card kpi"><div class="num text">Cross-Team</div><div class="lbl">Collaboration</div></div>
+      <div class="card kpi"><div class="num">6</div><div class="lbl"><b>Tools Utilised</b> (2 Used · 4 Learned)</div></div>
+    </div>
+
+    <section class="block card">
+      <h2 class="eyebrow"><span>01</span> Project Delivery Workflow</h2>
+      <div class="stages">
+        <div class="stage"><div class="dot">1</div><h3>Planning</h3><p>Requirements</p></div>
+        <div class="stage"><div class="dot">2</div><h3>Development</h3><p>Build &amp; Integrate</p></div>
+        <div class="stage"><div class="dot">3</div><h3>Testing</h3><p>Validation &amp; UAT</p></div>
+        <div class="stage"><div class="dot">4</div><h3>Deployment</h3><p>Release Preparation</p></div>
+      </div>
+    </section>
+
+    <section class="block card">
+      <h2 class="eyebrow"><span>02</span> Project Timeline</h2>
+      <div class="gantt-scroll"><div class="gantt" id="gantt" role="img" aria-label="Project timeline from Jul 1 to Jul 9"></div></div>
+    </section>
+
+    <section class="block">
+      <h2 class="eyebrow"><span>03</span> Tools &amp; Collaboration</h2>
+      <div class="tools">
+        <div class="card used">
+          <h3>Tools Used</h3><p class="sub">Hands-on Experience</p>
+          <div class="tool"><img src="../images/Task 3/confluence.png" alt="Confluence logo" /><div><b>Confluence</b><span>Project documentation</span></div></div>
+          <div class="tool"><img src="../images/Task 3/jira1-2.png" alt="Jira task view" /><div><b>Jira</b><span>Task tracking and coordination</span></div></div>
+        </div>
+        <div class="card learned">
+          <h3>Tools Learned</h3><p class="sub">Exposure &amp; Learning</p>
+          <div class="tool"><img src="../images/Task 3/jenkins.jpeg" alt="Jenkins logo" /><div><b>Jenkins</b><span>Pipeline automation</span></div></div>
+          <div class="tool"><img src="../images/Task 3/bitbucket.jpg" alt="Bitbucket logo" /><div><b>Bitbucket</b><span>Code repository</span></div></div>
+          <div class="tool"><img src="../images/Task 3/control-m-interface.png" alt="Control-M" /><div><b>Control-M</b><span>Job Scheduling</span></div></div>
+          <div class="tool"><img src="../images/Task 3/power-BI.avif" alt="Power BI" /><div><b>Power BI</b><span>Dashboard Development</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card takeaway">
+      <div class="k">KEY TAKEAWAY</div>
+      <h2>Understanding how teams deliver projects together</h2>
+      <p>Gained exposure to DevOps practices while using project documentation and tracking tools to support team coordination.</p>
+    </section>
+  </div>
+
+  <div id="imageModal"><img id="modalImg" src="" alt="Enlarged image" /></div>
+
+  <script>
+    // Activities and dates carried over from the previous sprint tracker (Jul 1 to Jul 9). "Pending" items have no dates.
+    var DAYS = 6;
+    var tasks = [
+      { name: 'Requirements & Planning', s: 1, e: 1 },
+      { name: 'Data Ingestion & Preparation', s: 1, e: 3 },
+      { name: 'Data Integration & SQL', s: 2, e: 4 },
+      { name: 'Dashboard Development', s: 3, e: 5 },
+      { name: 'Testing & UAT', s: 4, e: 6 },
+      { name: 'Deployment & Handover', s: 5, e: 6 }
+    ];
+    var g = document.getElementById('gantt');
+    g.style.setProperty('--days', DAYS);
+    var html = '<div class="g-axis"><div></div><div class="g-days">';
+    var months = ['Nov 2025', 'Dec 2025', 'Jan 2026', 'Feb 2026', 'Mar 2026', 'Apr 2026'];
+
+    months.forEach(function(month) {
+      html += '<span>' + month + '</span>';
+    });
+    html += '</div></div>';
+    tasks.forEach(function (t) {
+      html += '<div class="g-row"><div class="g-label">' + t.name + '</div><div class="g-track">';
+      if (t.pending) html += '<span class="g-pending">Pending</span>';
+      else html += '<div class="g-bar" style="left:' + ((t.s - 1) / DAYS * 100) + '%;width:' + ((t.e - t.s + 1) / DAYS * 100) + '%">' + months[t.s - 1] + ' – ' + months[t.e - 1] + '</div>';
+      html += '</div></div>';
+    });
+    g.innerHTML = html;
+
+    var modal = document.getElementById('imageModal'), modalImg = document.getElementById('modalImg');
+    document.querySelectorAll('.tool img').forEach(function (img) {
+      img.addEventListener('click', function () { modalImg.src = img.src; modalImg.alt = img.alt; modal.style.display = 'flex'; });
+    });
+    modal.addEventListener('click', function () { modal.style.display = 'none'; });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') modal.style.display = 'none'; });
+  </script>
+</body>
+</html>

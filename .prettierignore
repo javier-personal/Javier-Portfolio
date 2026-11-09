@@ -1,0 +1,16 @@
+# Original files that must stay byte-identical (never reformat)
+JS/script.js
+HTML/ocbc-task1.html
+HTML/ocbc-task2.html
+HTML/ocbc-task3.html
+HTML/test.html
+HTML/test2.html
+HTML/test3.html
+HTML/format.html
+HTML/saved-codes.html
+HTML/project_template.html
+_original-pages/
+vendor/
+images/
+files/
+Resume/

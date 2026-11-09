@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resume | Javier Tan</title>
+    <meta name="description" content="Preview and download Javier Tan's resume." />
+    <link rel="stylesheet" href="../css/base.css?v=3" />
+    <link rel="stylesheet" href="../css/components.css?v=3" />
+    <link rel="stylesheet" href="../css/pages.css?v=3" />
+  </head>
+  <body class="glass-page" data-root="../" data-nav="resume.html" data-pdf="../files/resume.pdf">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" id="site-header"></header>
+    <main id="main" class="page-wrap">
+      <section class="resume-card glass">
+        <h1>My Resume</h1>
+        <p>
+          Explore my journey in data science, visualization, and programming! Download my resume to
+          learn more about my skills, projects, and the tools I use to deliver impactful results.
+        </p>
+        <div class="resume-actions">
+          <a class="btn" id="dl" href="../files/resume.pdf" download
+            ><span data-icon="download"></span> Download Resume</a
+          >
+          <a
+            class="btn btn-glass"
+            id="open"
+            href="../files/resume.pdf"
+            target="_blank"
+            rel="noopener"
+            >Open in new tab</a
+          >
+        </div>
+      </section>
+      <section class="pdf-viewer" aria-label="Resume preview" id="viewer">
+        <p class="pdf-status" id="pdfStatus" role="status">Loading resume preview…</p>
+      </section>
+    </main>
+    <footer class="site-footer glass">
+      <p>
+        &copy; <span id="year">2026</span> Javier Tan. All rights reserved. Fully coded website 😄
+      </p>
+    </footer>
+    <button class="to-top" aria-label="Back to top"></button>
+    <script src="../JS/site.js?v=3"></script>
+    <script src="../vendor/pdfjs/pdf.js?v=3"></script>
+    <script src="../JS/resume.js?v=3"></script>
+  </body>
+</html>

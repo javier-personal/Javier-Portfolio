@@ -1,0 +1,68 @@
+Implement the following website-wide improvements:
+
+**1. Website Animations**
+- Introduce cohesive animations throughout the entire website, excluding the OCBC Internship page.
+- Use your creativity to choose suitable effects, such as floating, fade-in, fade-out, slide-in, reveal, bounce and subtle hover animations.
+- Ensure animations feel consistent, polished and purposeful rather than excessive or distracting.
+- Animations must replay whenever users refresh the page or scroll away from and back to an element.
+- Avoid unnecessary performance overhead and ensure smooth responsiveness across devices.
+
+**2. Project Card Descriptions**
+- Shorten the descriptions displayed on each project card under the Projects page.
+- Keep them concise, informative and focused on each project's main purpose and contribution.
+
+**3. Remove Source Text**
+- Remove the "Source" sentence/text from every individual project page.
+- Ensure no other project content is accidentally removed.
+
+**Important:** Preserve the existing website structure, design language, functionality and content outside these requested changes. Inspect the existing implementation first, avoid unnecessary modifications, and update the project documentation accordingly.
+
+Apply a subtle shimmering/glowing animation to the highlighted text.
+
+1. **Temasek Polytechnic:** Metallic gold text with a gentle, continuous shimmer and soft glow.
+2. **Third place:** Metallic gold text with a slightly more noticeable shimmer and glow to emphasise the achievement.
+
+**Animation requirements:**
+- Text must remain completely stationary.
+- Use a slow, smooth, continuous shimmering or glowing effect.
+- Simulate light reflecting off metallic gold lettering.
+- No movement, bouncing, scaling, sliding or flashing.
+- Keep the effect elegant, subtle and premium.
+- Preserve the existing typography, layout and surrounding text.
+- Ensure the animation is lightweight and does not affect page performance.
+- Respect `prefers-reduced-motion` by disabling the animation when enabled.
+
+Revamp the content of my **OCBC Internship page** to make it more concise, professional and recruiter-focused.
+
+**1. Reflection Book**
+- Rewrite and shorten the reflection book, which was originally written for a school submission.
+- Remove lengthy personal reflections, repetitive explanations and unnecessary academic details.
+- Retain important technical skills, tools, responsibilities, challenges, achievements and key learning outcomes that demonstrate my capabilities to potential employers.
+- Preserve meaningful details about what I actually did. Do not oversimplify or remove valuable technical information.
+
+**2. Task 1–3 Pages**
+- Review all three task pages and shorten the descriptions of my work.
+- Remove overly detailed, step-by-step explanations of routine processes.
+- Focus on what the task involved, what I personally implemented, technologies used, technical contributions and outcomes.
+- Retain important technical details that demonstrate my practical experience.
+- Present the content in concise, structured and recruiter-friendly language.
+
+**3. Task 1–3 Project Cards**
+- Replace the generic "Task 1", "Task 2" and "Task 3" card titles with short, descriptive titles that communicate the main purpose of each task.
+- Ensure the titles accurately reflect the actual work completed.
+
+**Important requirements:**
+- Review the existing OCBC content before making changes.
+- Do not invent achievements, responsibilities, technologies or results.
+- Preserve the existing page structure, styling, navigation and functionality.
+- Keep the original OCBC files intact apart from the specifically requested content changes.
+- Update the relevant project documentation and changelog.
+
+
+Professional picture to be floating 
+Statistic number should replay animation not jus reappear 
+
+
+
+Update personal finance tracker 
+Push updated portfolio 

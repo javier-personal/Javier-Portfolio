@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OCBC ATM Project</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f6fa;
+    }
+
+    .screen {
+      display: none;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .active { display: flex; }
+
+    .pin-input {
+      padding: 10px;
+      font-size: 18px;
+      width: 240px;
+      text-align: center;
+      border: 1px solid #aaa;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+
+    .start-btn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 16px;
+      background: #e60012;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .atm {
+      display: none;
+      height: 100vh;
+      flex-direction: row;
+    }
+
+    .left, .right {
+      padding: 40px;
+      overflow: auto;
+    }
+
+    .left {
+      flex: 0 0 45%;
+      background: white;
+    }
+
+    .right {
+      flex: 0 0 55%;
+      background: #f0f1f5;
+      border-left: 2px solid #ddd;
+      position: relative;
+    }
+
+    h2, h3 {
+      color: #111;
+      margin-top: 0;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 320px;
+    }
+
+    .button-grid button {
+      background: linear-gradient(to right, #a31921, #7a1c1e);
+      color: white;
+      padding: 16px;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .button-grid button:hover {
+      transform: scale(1.05);
+    }
+
+    .wide-button {
+      grid-column: span 2;
+    }
+
+    .service-box {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .service {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      flex: 1 1 45%;
+      font-size: 15px;
+    }
+
+    .more-services {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #e60012;
+      cursor: pointer;
+    }
+
+    .top-icons {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+    }
+
+    .top-icons span {
+      cursor: pointer;
+      color: #555;
+    }
+
+    .doc-view {
+      margin-top: 20px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .doc-view h4 {
+      color: #a31921;
+      margin-top: 0;
+    }
+
+    .back-btn {
+      margin-top: 30px;
+      background: #e60012;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .atm {
+        flex-direction: column;
+      }
+      .left, .right {
+        flex: 1 1 100%;
+      }
+      .button-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Step 1: PIN Screen -->
+  <div id="startScreen" class="screen active">
+    <h2>Welcome to OCBC Task 1 ATM</h2>
+    <p>Please insert your card and enter PIN to continue.</p>
+    <input type="password" class="pin-input" placeholder="Enter PIN" />
+    <button class="start-btn" onclick="goToATM()">Enter</button>
+    <button class="back-btn">← Back to OCBC intern home</button>
+
+  </div>
+
+  <!-- Step 2: ATM Interface -->
+  <div id="atmScreen" class="atm">
+    <!-- Left Side -->
+    <div class="left">
+      <h2>Hello!<br>What would you like to do today?</h2>
+      <div class="button-grid">
+        <button onclick="showDoc('doc1')">withdraw doc 1</button>
+        <button onclick="showDoc('doc2')">retrieve doc 2</button>
+        <button onclick="showDoc('doc3')">deposit doc 3</button>
+        <button onclick="showDoc('doc4')">transfer doc 4</button>
+        <button class="wide-button" onclick="showDoc('doc5')">Other cash amounts</button>
+      </div>
+      <button class="back-btn" onclick="backToStart()">← Back to Card Screen</button>
+    </div>
+
+    <!-- Right Side -->
+    <div class="right">
+      <div class="top-icons">
+        <span>中文</span>
+        <span onclick="backToStart()">Exit</span>
+      </div>
+      <h3>Non Cash Services</h3>
+      <div class="service-box">
+        <div class="service">Activate Card</div>
+        <div class="service">Balance Enquiry</div>
+      </div>
+      <div class="more-services">More services &gt;</div>
+
+      <div id="doc1" class="doc-view" style="display:none">
+        <h4>Requirement Gathering</h4>
+        <p>We met with stakeholders to clarify dashboard goals, data sources, and success criteria.</p>
+      </div>
+      <div id="doc2" class="doc-view" style="display:none">
+        <h4>SQL View Creation</h4>
+        <p>Built Hive SQL views to join and transform operational logs into visual-ready summaries.</p>
+      </div>
+      <div id="doc3" class="doc-view" style="display:none">
+        <h4>UAT & Visuals</h4>
+        <p>Gathered feedback and finalized visuals in Power BI with filters, alerts, and drilldowns.</p>
+      </div>
+      <div id="doc4" class="doc-view" style="display:none">
+        <h4>Deployment</h4>
+        <p>Scheduled data refresh, tested access permissions, and enabled report subscriptions.</p>
+      </div>
+      <div id="doc5" class="doc-view" style="display:none">
+        <h4>Other Documentation</h4>
+        <p>Includes backend code, slide decks, and architecture diagrams stored on SharePoint.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function goToATM() {
+      document.getElementById('startScreen').classList.remove('active');
+      document.getElementById('atmScreen').style.display = 'flex';
+    }
+
+    function backToStart() {
+      document.getElementById('atmScreen').style.display = 'none';
+      document.getElementById('startScreen').classList.add('active');
+      hideAllDocs();
+    }
+
+    function showDoc(id) {
+      hideAllDocs();
+      document.getElementById(id).style.display = 'block';
+    }
+
+    function hideAllDocs() {
+      const docs = document.querySelectorAll('.doc-view');
+      docs.forEach(doc => doc.style.display = 'none');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1: Data Pipeline Development | OCBC Internship</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f6fa;
+      overflow-x: hidden;
+    }
+
+    html, body {
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+
+    .screen {
+      display: none;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      position: relative;
+    }
+
+    .active { display: flex; }
+
+    .pin-input {
+      padding: 10px;
+      font-size: 18px;
+      width: 240px;
+      text-align: center;
+      border: 1px solid #aaa;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+
+    .start-btn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 16px;
+      background: #e60012;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .atm {
+      display: none;
+      height: 100vh;
+      flex-direction: row;
+    }
+
+    .left, .right {
+      padding: 40px;
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Default: left-align content */
+  width: 100%;
+  max-width: 100%;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+
+    .right {
+      flex: 0 0 55%;
+      background: #f0f1f5;
+      border-left: 2px solid #ddd;
+      position: relative;
+    }
+
+    .bottom {
+      width: 100%;
+      background: #f0f1f5;
+      border-top: 2px solid #ddd;
+      position: relative;
+      text-align: center;
+      padding: 40px 5%;
+      box-sizing: border-box;
+    }
+
+
+    h2, h3 {
+      color: #111;
+      margin-top: 0;
+    }
+
+    
+
+   .button-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns */
+  gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+.button-grid button {
+  background: linear-gradient(to right, #2C3E50, #1A252F);
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 22px;
+  border: none;
+  transition: 0.2s;
+  color: white;
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  flex: 1;
+  
+}
+
+
+    .button-grid button:hover {
+      transform: scale(1.05);
+    }
+
+    .wide-button {
+      grid-column: span 2;
+    }
+
+    .service-box {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .service {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      flex: 1 1 45%;
+      font-size: 15px;
+    }
+
+    .top-icons {
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .top-icons span {
+      cursor: pointer;
+    }
+
+    .doc-view {
+      margin-top: 20px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .doc-view h4 {
+      color: #a31921;
+      margin-top: 0;
+    }
+
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: #e60012;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .loading-screen {
+      display: none;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      color: #e60012;
+      font-weight: bold;
+    }
+
+    .back-btn-inline {
+      background: #e60012;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      text-decoration: none;
+      margin-bottom: 40px;
+      position: static !important;
+    }
+
+    /* 📸 Carousel Container Styling */
+    .carousel-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    /* 👁️ Only one carousel item shown at a time */
+    .carousel-item {
+      display: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .carousel-item.active {
+      display: block;
+    }
+
+    /* 📐 Resize image */
+    .carousel-item img {
+      max-width: 80%;
+      max-height: 50%;           /* Adjusts size to be smaller */
+      border-radius: 0px;
+      margin-bottom: 20px;
+    }
+
+    /* 🟥 Title and description formatting */
+    .carousel-title {
+      color: #a31921;
+      margin-bottom: 8px;
+    }
+
+    .carousel-desc {
+      color: #333;
+      font-size: 15px;
+    }
+
+    /* ⬅️➡️ Navigation buttons with spacing */
+    .carousel-nav {
+      display: flex;
+      justify-content: center;
+      gap: 30px;                 /* Adds spacing between arrows */
+    }
+
+    .carousel-nav button {
+      background: #e60012;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    #docHeader {
+      top: 20px;
+      left: 30px !important;
+      z-index: 10;
+    }
+
+    #docTitle {
+      font-size: 20px;
+      font-weight: bold;
+      color: #a31921;
+      margin: 0;
+    }
+
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0px 0px 30px;  /* ✅ Use padding instead of margin */
+    }
+
+
+
+   @media (max-width: 768px) {
+
+    .left {
+    align-items: center; /* Center all child elements */
+    text-align: center;
+    padding: 20px;
+  }
+  .atm {
+    flex-direction: column !important;
+    align-items: center;
+  }
+
+  .left, .right {
+    width: 100% !important;
+    flex: 0 0 auto;
+    padding: 20px;
+  }
+
+  .right {
+    border-left: none;
+    border-top: 2px solid #ddd;
+  }
+
+
+  .back-btn-inline {
+    align-self: flex-start;
+  }
+
+  #startScreen h2 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+  }
+
+  #startScreen p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  #startScreen .pin-input {
+    font-size: 22px !important;
+    padding: 18px;
+    width: 95%;
+    max-width: 400px;
+    border-radius: 10px;
+  }
+
+  #startScreen .start-btn {
+    font-size: 20px;
+    padding: 18px 36px;
+    border-radius: 10px;
+  }
+
+  .back-btn {
+    font-size: 15px;
+  }
+
+  #loadingScreen {
+    font-size: 2rem;
+    letter-spacing: 1px;
+  }
+}
+
+
+
+
+    /* Recruiter-focused summary blocks (added) */
+    .brief { text-align: left; margin: 0 0 6px; font-size: 15px; line-height: 1.55; }
+    .brief p { margin: 0 0 10px; }
+    .brief ul, .carousel-desc ul { margin: 6px 0 10px; padding-left: 20px; text-align: left; }
+    .brief li, .carousel-desc li { margin-bottom: 4px; }
+    .carousel-desc { text-align: left; line-height: 1.55; }
+    .carousel-desc p { margin: 0 0 8px; }
+  </style>
+  <link rel="stylesheet" href="../css/base.css?v=3" />
+    <link rel="stylesheet" href="../css/components.css?v=3" />
+    <link rel="stylesheet" href="../css/pages.css?v=3" />
+</head>
+<body>
+
+  <!-- Step 1: PIN Screen -->
+  <div id="startScreen" class="screen active">
+    <a class="back-btn" href="ocbc-intern.html" id="internBackBtn">← Back to OCBC intern home</a>
+    <h2>Welcome to OCBC ATM</h2>
+    <p>(Click <b>ENTER</b> to view Data Pipeline Development details, documentations & artefacts)</p>
+    <input type="password" class="pin-input" id="pinInput" placeholder="Enter PIN" />
+    <button class="start-btn" onclick="animateAndLoad()">Enter</button>
+  </div>
+
+  <!-- Step 1.5: Loading Screen -->
+  <div id="loadingScreen" class="loading-screen">Loading...</div>
+
+  <!-- Step 2: ATM Interface -->
+  <div id="atmScreen" class="atm">
+
+    <!-- Left Side -->
+    <div class="left">
+      <button class="back-btn-inline" onclick="backToStart()">← Back to Card Screen</button>
+      <h2 style="font-size: 1.5em;">Hello, welcome to task 1 OCBC Data Pipeline Terminal! What would you like to do today?<br>
+        <span style="font-size: 0.6em; font-weight: normal; color: #555;">
+          (Select a workflow step to view)
+        </span>
+      </h2>
+
+      <div class="button-grid">
+        <button onclick="showDoc('doc1')">Requirement Gathering</button>
+        <button onclick="showDoc('doc2')">Data Testing</button>
+        <button onclick="showDoc('doc3')">UAT Review</button>
+        <button onclick="showDoc('doc4')">Production Deployment</button>
+        <button class="wide-button" onclick="showResources()">View Resources</button>
+      </div>
+    </div>
+
+    <!-- Right Side -->
+    <div class="right">
+      <div class="header-bar">
+        <h3 id="docTitle"> </h3>
+        <div class="top-icons">
+          <span>中文</span>
+          <span onclick="backToStart()">Exit</span> 
+        </div>
+      </div>
+
+
+      <!-- Resource Panel -->
+      <div id="resourcesPanel" style="display: block;">
+        
+        <div class="service-box">
+          <div class="service">
+            <strong>Tools Used:</strong><br>
+            Hive SQL, Python, Linux CLI, Excel, BDMF Framework
+          </div>
+          <div class="service">
+            <strong>Key Skills:</strong><br>
+            Data Ingestion, Metadata Configuration, UAT Testing, PROD Handover
+          </div>
+        </div>
+
+        <div style="margin-top: 30px;">
+          <h4>Data Pipeline Overview</h4>
+          <img src="../images/Task 1/resized-pipeline-diagram.png" alt="Pipeline Diagram" style="width: 100%; border-radius: 8px;" />
+          <p style="font-size: 14px; color: #666;">This diagram summarizes the flow from metadata setup to UAT and PROD deployment.</p>
+        </div>
+
+        <!--<div style="margin-top: 30px;">
+          <h4>🔗 Helpful Documentation</h4>
+          <ul style="padding-left: 18px; font-size: 15px; line-height: 1.6;">
+            <li><a href="https://confluence.ocbc.com/display/BDMF" target="_blank">OCBC BDMF Confluence</a></li>
+            <li><a href="https://docs.cloudera.com" target="_blank">Cloudera Documentation</a></li>
+            <li><a href="https://github.com/your-repo/pipeline-scripts" target="_blank">Backend Pipeline GitHub</a></li>
+          </ul>
+        </div>
+      -->
+      </div>
+
+      
+<!-- Documentation Views -->
+
+<!-- DOC 1 -->
+<div id="doc1" class="doc-view" style="display:none">
+  <div class="carousel-container">
+    <div class="carousel-item active">
+      <h4 class="carousel-title">Requirements &amp; Data Understanding</h4>
+      <div class="carousel-desc">
+        <ul>
+          <li>Met users to capture dashboard goals, key business questions and layout preferences.</li>
+          <li>Reviewed sample datasets to confirm the schema, required transformations and future data loading requirements.</li>
+          <li>Understood operational workflows, including SLA tracking and channel performance, to align dashboard development with business needs.</li>
+        </ul>
+      </div>
+      <img
+    src="../images/Task 1/user-calling.jpg"
+    alt="Requirements gathering with users"
+    style="width: 100%; max-width: 100%; max-height: 300px; height: auto; object-fit: contain; display: block; margin: 0 auto;"
+/>
+    </div>
+  </div>
+</div>
+
+<!-- DOC 2 -->
+<div id="doc2" class="doc-view" style="display:none">
+  <div class="carousel-container">
+    <div class="carousel-item active">
+      <h4 class="carousel-title">Automated Data Ingestion &amp; Integration</h4>
+      <div class="carousel-desc">
+        <p>
+          Developed an automated data ingestion workflow to integrate,
+          transform and prepare business data within Hadoop for downstream analytics.
+        </p>
+        <ul>
+          <li><strong>Data Preparation:</strong> Cleaned, validated and standardised incoming datasets to improve data quality and consistency.</li>
+          <li><strong>Data Integration:</strong> Developed Hive views and structured data schemas to organise and prepare data for analysis.</li>
+          <li><strong>Workflow Automation:</strong> Implemented scheduled ingestion workflows using Control-M, with BDMF audit tracking for job monitoring and data traceability.</li>
+        </ul>
+        <p>
+          <strong>Technologies:</strong>
+          <ul class="tags">
+    <li style="background-color: #FEE2E2 !important; color: #991B1B !important;">Hadoop</li>
+    <li style="background-color: #FEE2E2 !important; color: #991B1B !important;">Hive SQL</li>
+    <li style="background-color: #FEE2E2 !important; color: #991B1B !important;">Control-M</li>
+    <li style="background-color: #FEE2E2 !important; color: #991B1B !important;">BDMF</li>
+    <li style="background-color: #FEE2E2 !important; color: #991B1B !important;">Linux CLI</li>
+    <li style="background-color: #FEE2E2 !important; color: #991B1B !important;">MobaXterm</li>
+</ul>
+        </p>
+      </div>
+      <img src="../images/Task 1/control-m-interface.png" alt="Control-M workflow interface" />
+    </div>
+  </div>
+</div>
+
+<!-- DOC 3 -->
+<div id="doc3" class="doc-view" style="display:none">
+  <div class="carousel-container">
+
+    <div class="carousel-item active">
+      <h4 class="carousel-title">Data Validation &amp; UAT</h4>
+      <div class="carousel-desc">
+        <ul>
+          <li>Validated dashboard metrics against source data using Excel and SQL queries to verify counts, groupings and business logic.</li>
+          <li>Worked with users to resolve discrepancies, refine dashboard visuals and confirm business requirements.</li>
+          <li>Obtained user acceptance testing (UAT) sign-off.</li>
+        </ul>
+      </div>
+      <img src="../images/Task 1/data-validation.png" alt="Data validation" />
+    </div>
+
+    <div class="carousel-item">
+      <h4 class="carousel-title">Debugging &amp; Issue Resolution</h4>
+      <div class="carousel-desc">
+        <p>
+          Investigated data pipeline and ingestion issues involving missing files,
+          schema mismatches, access permissions, failed Control-M jobs,
+          audit metadata and data quality discrepancies.
+        </p>
+        <p>
+          Resolved issues through log inspection, validation queries and
+          collaboration with users to ensure reliable data processing.
+        </p>
+      </div>
+      <img src="../images/Task 1/debugging.png" alt="Debugging and issue resolution" />
+    </div>
+
+    <div class="carousel-nav">
+      <button onclick="prevSlide('doc3')">←</button>
+      <button onclick="nextSlide('doc3')">→</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- DOC 4 -->
+<div id="doc4" class="doc-view" style="display:none">
+  <div class="carousel-container">
+    <div class="carousel-item active">
+      <h4 class="carousel-title">Production Deployment</h4>
+      <div class="carousel-desc">
+        <ul>
+          <li>Prepared production deployment materials, including DDL scripts, Power BI files, Control-M scheduling scripts, metadata configurations and replacement datasets.</li>
+          <li>Supported the transition to scheduled production data ingestion, enabling dashboards to reflect updated operational data.</li>
+        </ul>
+      </div>
+      <img src="../images/Task 1/prod-deployment.jpg" alt="Production deployment" />
+    </div>
+  </div>
+</div>
+
+
+    </div>
+  </div>
+
+  <script>
+  // Simulated PIN typing and screen switch
+  function animateAndLoad() {
+    const pinInput = document.getElementById("pinInput");
+    let i = 0;
+    const pin = "123456";
+    const interval = setInterval(() => {
+      pinInput.value = pin.slice(0, i + 1).replace(/./g, '•');
+      i++;
+      if (i >= pin.length) {
+        clearInterval(interval);
+        document.getElementById("startScreen").classList.remove("active");
+        document.getElementById("loadingScreen").style.display = "flex";
+        setTimeout(() => {
+          document.getElementById("loadingScreen").style.display = "none";
+          document.getElementById("atmScreen").style.display = "flex";
+        }, 1200);
+      }
+    }, 200);
+    document.getElementById("docTitle").textContent = "View Resources";
+
+  }
+
+  // Return to PIN screen
+  function backToStart() {
+    document.getElementById('atmScreen').style.display = 'none';
+    document.getElementById('startScreen').classList.add('active');
+    document.getElementById('pinInput').value = "";
+    hideAllDocs();
+    showResources(); // Default view on return
+  }
+
+  // Reset all .doc-view sections
+  function hideAllDocs() {
+    const docs = document.querySelectorAll('.doc-view');
+    docs.forEach(doc => doc.style.display = 'none');
+  }
+
+  // Show main resource view
+  function showResources() {
+    hideAllDocs();
+    document.getElementById("resourcesPanel").style.display = "block";
+    document.getElementById("docTitle").textContent = "View Resources"; // ✅ Set header title
+  }
+
+
+  // Track each doc's current slide index
+  const carouselState = {
+    doc1: 0,
+    doc2: 0,
+    doc3: 0,
+    doc4: 0
+  };
+
+  // Show selected doc and reset carousel
+  function showDoc(id) {
+    hideAllDocs();
+    document.getElementById("resourcesPanel").style.display = "none";
+
+    // Show the selected doc
+    const doc = document.getElementById(id);
+    doc.style.display = "block";
+
+    // Set section title
+    const titles = {
+      doc1: "Requirement Gathering",
+      doc2: "Data Testing",
+      doc3: "UAT Review",
+      doc4: "Production Deployment"
+    };
+    document.getElementById("docTitle").textContent = titles[id] || "";
+
+    // Show first slide
+    carouselState[id] = 0;
+    updateCarousel(id);
+  }
+
+
+  // Show active slide for given doc
+  function updateCarousel(docId) {
+    const items = document.querySelectorAll(`#${docId} .carousel-item`);
+    const currentIndex = carouselState[docId];
+
+    items.forEach((item, index) => {
+      item.classList.toggle('active', index === currentIndex);
+    });
+  }
+
+  // Go to previous slide
+  function prevSlide(docId) {
+    const items = document.querySelectorAll(`#${docId} .carousel-item`);
+    if (items.length === 0) return;
+
+    carouselState[docId] = (carouselState[docId] - 1 + items.length) % items.length;
+    updateCarousel(docId);
+  }
+
+  // Go to next slide
+  function nextSlide(docId) {
+    const items = document.querySelectorAll(`#${docId} .carousel-item`);
+    if (items.length === 0) return;
+
+    carouselState[docId] = (carouselState[docId] + 1) % items.length;
+    updateCarousel(docId);
+  }
+</script>
+
+</body>
+</html>

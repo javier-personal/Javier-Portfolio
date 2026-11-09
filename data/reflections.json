@@ -1,0 +1,155 @@
+{
+  "tasks": [
+    { "id": "task1", "label": "Data Pipeline" },
+    { "id": "task2", "label": "Dashboards" },
+    { "id": "task3", "label": "DevOps" }
+  ],
+  "entries": [
+    {
+      "task": "task1",
+      "title": "Weeks 1–4 – Stakeholder Communication",
+      "body": [
+        {
+          "label": "Work",
+          "text": "Met users to capture dashboard goals, key business questions and layout preferences, and reviewed sample data to confirm the schema and logic the pipeline needed."
+        },
+        {
+          "label": "Challenge",
+          "text": "Learning to run user calls independently, without my supervisor present."
+        },
+        {
+          "label": "Outcome",
+          "text": "Shadowed my supervisor in the first weeks to learn the approach, and now hold user calls and meetings independently."
+        }
+      ]
+    },
+    {
+      "task": "task1",
+      "title": "Weeks 5–8 – Data Preparation & Ingestion",
+      "body": [
+        {
+          "label": "Work",
+          "text": "Cleaned and formatted sample data, designed Hive table schemas and ingested files with Linux commands, with every load audited through the BDMF framework."
+        },
+        {
+          "label": "Learning",
+          "text": "A small formatting mistake can break the whole pipeline. Schemas need to reflect structure and meaning, not just storage, and audit trails prove that data was loaded correctly."
+        },
+        {
+          "label": "Practice",
+          "text": "Kept a reference file of Linux commands and their functions, which made day-to-day pipeline work faster."
+        }
+      ]
+    },
+    {
+      "task": "task1",
+      "title": "Weeks 9–12 – Validation & Debugging",
+      "body": [
+        {
+          "label": "Challenge",
+          "text": "A single wrong figure could come from schema errors, ingestion problems or logic mistakes."
+        },
+        {
+          "label": "Approach",
+          "text": "Documented correct and incorrect values as a reference and validated results against source data."
+        },
+        {
+          "label": "Outcome",
+          "text": "Faster troubleshooting, and the habit of anticipating common errors so production processes are safer and more automated."
+        }
+      ]
+    },
+    {
+      "task": "task1",
+      "title": "Weeks 13–16 – Production Delivery & Collaboration",
+      "body": [
+        {
+          "label": "Deployment",
+          "text": "Finalised SQL views, PBIX dashboards and ingestion paths, then followed a structured handover into production."
+        },
+        {
+          "label": "Collaboration",
+          "text": "Coordinated with the BI and DevOps teams. Clear documentation and proactive communication kept cross-team dependencies from becoming bottlenecks."
+        },
+        {
+          "label": "Automation",
+          "text": "Built reusable SQL snippets and Excel templates for future tasks, improving efficiency and reducing manual errors."
+        }
+      ]
+    },
+    {
+      "task": "task2",
+      "title": "Weeks 1–4 – Requirements & Dashboard Planning",
+      "body": [
+        {
+          "label": "Work",
+          "text": "Gathered requirements before building: data schema, nature and volume of the data, key metrics and business logic."
+        },
+        {
+          "label": "Outcome",
+          "text": "Used PowerPoint mockups to confirm the design with users before the build began."
+        }
+      ]
+    },
+    {
+      "task": "task2",
+      "title": "Weeks 5–12 – SQL & Power BI Development",
+      "body": [
+        {
+          "label": "Work",
+          "text": "Wrote complex SQL with CTEs for maintainable, accurate queries and implemented my own business logic under supervision."
+        },
+        {
+          "label": "Challenge",
+          "text": "DAX and Power Query M were new to me."
+        },
+        {
+          "label": "Solution",
+          "text": "Learned them through online resources and delivered dashboards that met user expectations, connecting the full path from SQL to Power BI."
+        }
+      ]
+    },
+    {
+      "task": "task2",
+      "title": "Weeks 9–12 – Feedback & Data Verification",
+      "body": [
+        {
+          "label": "Feedback",
+          "text": "Engaged users iteratively. Each round improved clarity, usability and business alignment."
+        },
+        {
+          "label": "Verification",
+          "text": "Validated dashboard metrics against source data by comparing Excel and SQL outputs, which surfaced discrepancies early and improved reliability."
+        }
+      ]
+    },
+    {
+      "task": "task3",
+      "title": "Weeks 1–12 – DevOps Tools & Workflow",
+      "body": [
+        {
+          "label": "Learning",
+          "text": "Hands-on experience with Jira, Confluence, Infinity, Jenkins, Bitbucket and Agile sprint planning, and the role each plays in the delivery lifecycle."
+        },
+        {
+          "label": "Challenge",
+          "text": "Understanding how the tools, processes and workflows connect."
+        },
+        {
+          "label": "Solution",
+          "text": "Created internal workflow guides and checklists and sought mentorship, which built confidence navigating the platforms."
+        }
+      ]
+    },
+    {
+      "task": "task3",
+      "title": "Automation & Reliability Insights",
+      "body": [
+        {
+          "label": "Learning",
+          "text": "Pre-deployment checks, automated approvals and pipeline monitoring prevent errors, and clearly documented processes make handovers smoother and delivery more consistent."
+        }
+      ]
+    }
+  ]
+}

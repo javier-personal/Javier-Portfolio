@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Internship at OCBC | Javier Tan</title>
+    <meta
+      name="description"
+      content="Javier Tan's year-long data engineering and analytics internship at OCBC: projects and reflections."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/base.css?v=3" />
+    <link rel="stylesheet" href="../css/components.css?v=3" />
+    <link rel="stylesheet" href="../css/ocbc.css?v=3" />
+  </head>
+  <body data-root="../" data-nav="internship.html" data-motion="off">
+    <header class="site-header" id="site-header" data-theme="dark"></header>
+
+    <section class="hero">
+      <img class="bg" src="../images/Intern/ocbc-bg.jpg" alt="" />
+      <div class="purple-overlay"></div>
+      <div class="overlay-content">
+        <div class="hero-text">
+          <h1>Internship at OCBC</h1>
+          <p>
+            Click start to follow me through my journey in OCBC through projects, and experience
+            I've gained interning here!
+          </p>
+          <div class="buttons"><a href="#content">Start</a></div>
+        </div>
+        <div class="hero-image">
+          <img src="../images/Intern/ocbc-logo-2.png" alt="Javier at the OCBC office" />
+        </div>
+      </div>
+    </section>
+
+    <div class="background-blur">
+      <main id="content" class="wrap">
+        <section id="about">
+          <h2>About My Internship</h2>
+          <div class="about-text">
+            <p>
+              I interned at OCBC for a year under Group Operations and Technology (GOT), within the
+              Group Engineering department. My role revolves around data engineering and analytics,
+              where I help build live, end-to-end dashboard solutions for teams across different
+              departments.
+            </p>
+            <p>
+              This involves working closely with users to understand their needs, developing
+              automated workflows, and delivering clear, actionable insights through visual
+              dashboards. The internship has given me valuable exposure to enterprise data systems
+              and cross-functional collaboration, while deepening my technical skills in data
+              processing and real-world problem-solving.
+            </p>
+          </div>
+          <div class="info-grid">
+            <div class="info-card">
+              <h3 data-icon="calendar">Duration</h3>
+              <p>Mar 2025 – Mar 2026</p>
+            </div>
+            <div class="info-card">
+              <h3 data-icon="building">Department</h3>
+              <p>Group Operations &amp; Technology (GO&amp;T) - Group Engineering</p>
+            </div>
+            <div class="info-card">
+              <h3 data-icon="target">Focus</h3>
+              <p>Data Analytics, Automation, Dashboards, Data Engineering</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" class="block">
+          <h2>Projects</h2>
+          <div class="carousel-container" id="carouselBox">
+            <button
+              class="carousel-button prev"
+              id="prev"
+              aria-label="Previous task"
+              data-icon="prev"
+            ></button>
+            <div class="carousel" id="carousel">
+              <div class="carousel-item">
+                <a href="ocbc-task1.html" class="card"
+                  ><img src="../images/Intern/data-pipeline.png" alt="Data pipeline development" />
+                  <h3>Data Pipeline Development</h3>
+                  <p>
+                    Develop the end to end data pipeline for datalake/datamart ingestion
+                    <br />(Click here to find out more!)
+                  </p></a
+                >
+              </div>
+              <div class="carousel-item">
+                <a href="ocbc-task2.html" class="card"
+                  ><img
+                    src="../images/Intern/ocbc-dashboard1.jpg"
+                    alt="Departmental dashboard development"
+                  />
+                  <h3>Analytical Dashboards</h3>
+                  <p>
+                    Develop the visualization dashboard for different departments<br />(Click here
+                    to find out more!)
+                  </p></a
+                >
+              </div>
+              <div class="carousel-item">
+                <a href="ocbc-task3.html" class="card"
+                  ><img src="../images/Intern/devops.jpg" alt="DevOps framework design" />
+                  <h3>DevOps Framework Design</h3>
+                  <p>
+                    Design &amp; document the DevOps framework <br />(Click here to find out more!)
+                  </p></a
+                >
+              </div>
+            </div>
+            <button
+              class="carousel-button next"
+              id="next"
+              aria-label="Next task"
+              data-icon="next"
+            ></button>
+          </div>
+        </section>
+
+        <!-- Hidden for now not needed for hiring purposes
+        <section id="reflection" class="block">
+          <h2>Reflection</h2>
+          <div class="book" id="book">
+            <button
+              class="book-closed"
+              id="bookOpenBtn"
+              aria-expanded="false"
+              aria-controls="bookOpen"
+            >
+              <span class="shadow"></span><span class="pages"></span>
+              <span class="cover"
+                ><span class="cover-title">Javier’s Bank Book</span
+                ><span class="cover-label">Click here to view reflection transactions</span></span
+              >
+            </button>
+            <div class="book-open" id="bookOpen" hidden>
+              <div class="book-page">
+                <div
+                  class="book-toolbar"
+                  role="group"
+                  aria-label="Filter reflections"
+                  id="tabs"
+                ></div>
+                <div class="entries" id="entries" tabindex="0" aria-label="Reflections"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    -->
+
+    <dialog class="reflection" id="dlg" aria-labelledby="dlgTitle">
+      <button class="x" id="dlgClose">Close</button>
+      <h3 id="dlgTitle"></h3>
+      <div id="dlgBody"></div>
+    </dialog>
+    <footer class="site-footer glass">
+      <p>
+        &copy; <span id="year">2026</span> Javier Tan. All rights reserved. Fully coded website 😄
+      </p>
+    </footer>
+    <button class="to-top" aria-label="Back to top"></button>
+    <script type="application/json" id="reflection-data">
+      {
+        "tasks": [
+          { "id": "task1", "label": "Data Pipeline" },
+          { "id": "task2", "label": "Dashboards" },
+          { "id": "task3", "label": "DevOps" }
+        ],
+        "entries": [
+          {
+            "task": "task1",
+            "title": "Weeks 1–4 – Stakeholder Communication",
+            "body": [
+              {
+                "label": "Work",
+                "text": "Met users to capture dashboard goals, key business questions and layout preferences, and reviewed sample data to confirm the schema and logic the pipeline needed."
+              },
+              {
+                "label": "Challenge",
+                "text": "Learning to run user calls independently, without my supervisor present."
+              },
+              {
+                "label": "Outcome",
+                "text": "Shadowed my supervisor in the first weeks to learn the approach, and now hold user calls and meetings independently."
+              }
+            ]
+          },
+          {
+            "task": "task1",
+            "title": "Weeks 5–8 – Data Preparation & Ingestion",
+            "body": [
+              {
+                "label": "Work",
+                "text": "Cleaned and formatted sample data, designed Hive table schemas and ingested files with Linux commands, with every load audited through the BDMF framework."
+              },
+              {
+                "label": "Learning",
+                "text": "A small formatting mistake can break the whole pipeline. Schemas need to reflect structure and meaning, not just storage, and audit trails prove that data was loaded correctly."
+              },
+              {
+                "label": "Practice",
+                "text": "Kept a reference file of Linux commands and their functions, which made day-to-day pipeline work faster."
+              }
+            ]
+          },
+          {
+            "task": "task1",
+            "title": "Weeks 9–12 – Validation & Debugging",
+            "body": [
+              {
+                "label": "Challenge",
+                "text": "A single wrong figure could come from schema errors, ingestion problems or logic mistakes."
+              },
+              {
+                "label": "Approach",
+                "text": "Documented correct and incorrect values as a reference and validated results against source data."
+              },
+              {
+                "label": "Outcome",
+                "text": "Faster troubleshooting, and the habit of anticipating common errors so production processes are safer and more automated."
+              }
+            ]
+          },
+          {
+            "task": "task1",
+            "title": "Weeks 13–16 – Production Delivery & Collaboration",
+            "body": [
+              {
+                "label": "Deployment",
+                "text": "Finalised SQL views, PBIX dashboards and ingestion paths, then followed a structured handover into production."
+              },
+              {
+                "label": "Collaboration",
+                "text": "Coordinated with the BI and DevOps teams. Clear documentation and proactive communication kept cross-team dependencies from becoming bottlenecks."
+              },
+              {
+                "label": "Automation",
+                "text": "Built reusable SQL snippets and Excel templates for future tasks, improving efficiency and reducing manual errors."
+              }
+            ]
+          },
+          {
+            "task": "task2",
+            "title": "Weeks 1–4 – Requirements & Dashboard Planning",
+            "body": [
+              {
+                "label": "Work",
+                "text": "Gathered requirements before building: data schema, nature and volume of the data, key metrics and business logic."
+              },
+              {
+                "label": "Outcome",
+                "text": "Used PowerPoint mockups to confirm the design with users before the build began."
+              }
+            ]
+          },
+          {
+            "task": "task2",
+            "title": "Weeks 5–12 – SQL & Power BI Development",
+            "body": [
+              {
+                "label": "Work",
+                "text": "Wrote complex SQL with CTEs for maintainable, accurate queries and implemented my own business logic under supervision."
+              },
+              { "label": "Challenge", "text": "DAX and Power Query M were new to me." },
+              {
+                "label": "Solution",
+                "text": "Learned them through online resources and delivered dashboards that met user expectations, connecting the full path from SQL to Power BI."
+              }
+            ]
+          },
+          {
+            "task": "task2",
+            "title": "Weeks 9–12 – Feedback & Data Verification",
+            "body": [
+              {
+                "label": "Feedback",
+                "text": "Engaged users iteratively. Each round improved clarity, usability and business alignment."
+              },
+              {
+                "label": "Verification",
+                "text": "Validated dashboard metrics against source data by comparing Excel and SQL outputs, which surfaced discrepancies early and improved reliability."
+              }
+            ]
+          },
+          {
+            "task": "task3",
+            "title": "Weeks 1–12 – DevOps Tools & Workflow",
+            "body": [
+              {
+                "label": "Learning",
+                "text": "Hands-on experience with Jira, Confluence, Infinity, Jenkins, Bitbucket and Agile sprint planning, and the role each plays in the delivery lifecycle."
+              },
+              {
+                "label": "Challenge",
+                "text": "Understanding how the tools, processes and workflows connect."
+              },
+              {
+                "label": "Solution",
+                "text": "Created internal workflow guides and checklists and sought mentorship, which built confidence navigating the platforms."
+              }
+            ]
+          },
+          {
+            "task": "task3",
+            "title": "Automation & Reliability Insights",
+            "body": [
+              {
+                "label": "Learning",
+                "text": "Pre-deployment checks, automated approvals and pipeline monitoring prevent errors, and clearly documented processes make handovers smoother and delivery more consistent."
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <script src="../JS/site.js?v=3"></script>
+    <script src="../JS/ocbc.js?v=3"></script>
+  </body>
+</html>

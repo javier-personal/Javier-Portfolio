@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3D Project Carousel</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f7f6fb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      color: #4a3c72;
+      font-size: 2em;
+    }
+
+    .carousel-container {
+      position: relative;
+      perspective: 1200px;
+      width: 100%;
+      max-width: 900px;
+      height: 300px;
+    }
+
+    .carousel {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      transform-style: preserve-3d;
+      transition: transform 1s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .carousel-item {
+      position: absolute;
+      width: 280px;
+      height: 200px;
+      transform-style: preserve-3d;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+      opacity: 0.95;
+      transition: transform 1s ease;
+    }
+
+    .carousel-item h3 {
+      margin: 0;
+      color: #4a3c72;
+    }
+
+    .carousel-item p {
+      font-size: 14px;
+      color: #444;
+      margin-top: 10px;
+    }
+
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(74, 60, 114, 0.85);
+      color: white;
+      border: none;
+      font-size: 30px;
+      padding: 10px 14px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .carousel-button.prev {
+      left: -80px;
+    }
+
+    .carousel-button.next {
+      right: -80px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>3D Project Carousel</h1>
+
+  <div class="carousel-container">
+    <button class="carousel-button prev" onclick="rotateCarousel(-1)">&#10094;</button>
+    
+    <div class="carousel" id="carousel">
+      <div class="carousel-item"><h3>Project 1</h3><p>Data ingestion using Python & Hive.</p></div>
+      <div class="carousel-item"><h3>Project 2</h3><p>Interactive Power BI dashboards.</p></div>
+      <div class="carousel-item"><h3>Project 3</h3><p>VBA automation in Excel.</p></div>
+      <div class="carousel-item"><h3>Project 4</h3><p>Risk scoring using ML model.</p></div>
+    </div>
+
+    <button class="carousel-button next" onclick="rotateCarousel(1)">&#10095;</button>
+  </div>
+
+  <script>
+  const carousel = document.getElementById('carousel');
+  const items = document.querySelectorAll('.carousel-item');
+  const itemCount = items.length;
+  const theta = 360 / itemCount;
+  const radius = 300;
+
+  let angle = 0; // Actual angle the carousel is rotated
+
+  function setupCarousel() {
+    for (let i = 0; i < itemCount; i++) {
+      const itemAngle = theta * i;
+      items[i].style.transform = `rotateY(${itemAngle}deg) translateZ(${radius}px)`;
+    }
+    updateCarousel();
+  }
+
+  function rotateCarousel(direction) {
+    angle += -theta * direction; // negative for clockwise when direction is +1
+    updateCarousel();
+  }
+
+  function updateCarousel() {
+    carousel.style.transform = `translateZ(-${radius}px) rotateY(${angle}deg)`;
+  }
+
+  setupCarousel();
+</script>
+
+
+</body>
+</html>

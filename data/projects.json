@@ -1,0 +1,641 @@
+[
+  {
+    "slug": "dses",
+    "title": "Data Science Essentials",
+    "summary": "Built a predictive analytics pipeline with Python libraries for profiling, cleaning, visualization, modeling, clustering, and recommendations.",
+    "image": "images/Project-Cards/DSES.png",
+    "alt": "Data Science Essentials",
+    "recent": true,
+    "relevant": true,
+    "mini": false,
+    "detail": {
+      "contribution": "Profiled and cleaned the dataset, built visualisations, selected features, compared models, applied K-Means clustering and wrote recommendations.",
+      "tools": [
+        "Python",
+        "pandas",
+        "scikit-learn",
+        "missingno",
+        "seaborn",
+        "K-Means",
+        "Random Forest"
+      ],
+      "result": {
+        "text": "Gradient Boosting ranked first on the model leaderboard with 77.3% accuracy on a 1,744-row test set, ahead of Random Forest at 73.9%.",
+        "image": "images/DSES/model-leaderboard.jpeg",
+        "alt": "Result evidence: Model leaderboard screenshot"
+      },
+      "gallery": [
+        {
+          "src": "images/DSES/dses-profiling.jpeg",
+          "caption": "Data Profiling (1/2)"
+        },
+        {
+          "src": "images/DSES/dses-profiling2.jpeg",
+          "caption": "Data Profiling (2/2)"
+        },
+        {
+          "src": "images/DSES/missingno.jpeg",
+          "caption": "Handling Data Issues (1/2)"
+        },
+        {
+          "src": "images/DSES/handling-data-issues.JPG",
+          "caption": "Handling Data Issues (2/2)"
+        },
+        {
+          "src": "images/DSES/visualizations.jpeg",
+          "caption": "Transformations & Visualizations (1/2)"
+        },
+        {
+          "src": "images/DSES/transformation.jpeg",
+          "caption": "Transformations & Visualizations (2/2)"
+        },
+        {
+          "src": "images/DSES/optimal-features.jpeg",
+          "caption": "Feature Importance & Modelling (1/2)"
+        },
+        {
+          "src": "images/DSES/model-leaderboard.jpeg",
+          "caption": "Feature Importance & Modelling (2/2)"
+        },
+        {
+          "src": "images/DSES/elbow-method.jpeg",
+          "caption": "Clustering & Conclusion (1/2)"
+        },
+        {
+          "src": "images/DSES/clustering.jpeg",
+          "caption": "Clustering & Conclusion (2/2)"
+        }
+      ]
+    },
+    "cardSummary": "Built a Python predictive analytics pipeline covering cleaning, modelling and clustering. Gradient Boosting ranked first at 77.3% accuracy."
+  },
+  {
+    "slug": "full-stack-web-development",
+    "title": "Full-Stacked Web Development",
+    "summary": "Designed and developed a full-stack website using HTML for front-end design, JavaScript for functionality, and MySQL for back-end integration.",
+    "image": "images/Project-Cards/web.jpeg",
+    "alt": "Full-stacked web development Project",
+    "recent": false,
+    "relevant": false,
+    "mini": false,
+    "detail": {
+      "contribution": "Designed the relational database and SQL schema, built the Node.js/Express API and developed the front end that adds, updates and deletes products and categories.",
+      "tools": ["HTML", "JavaScript", "Node.js", "Express", "MySQL", "XMLHttpRequest"],
+      "result": null,
+      "gallery": [
+        {
+          "src": "images/ADEV/adev-relational-database-design.jpeg",
+          "caption": "Relational Database Design"
+        },
+        {
+          "src": "images/ADEV/adev-sqlschema.jpeg",
+          "caption": "SQL Schema & Table creation"
+        },
+        {
+          "src": "images/ADEV/adev-sql-connection.jpeg",
+          "caption": "Connecting to SQL database & Building API Layer (1/2)"
+        },
+        {
+          "src": "images/ADEV/adev-server.jpeg",
+          "caption": "Connecting to SQL database & Building API Layer (2/2)"
+        },
+        {
+          "src": "images/ADEV/adev-frontend.jpeg",
+          "caption": "Front-End Development (1/2)"
+        },
+        {
+          "src": "images/ADEV/adev-update-product.jpeg",
+          "caption": "Front-End Development (2/2)"
+        }
+      ]
+    },
+    "cardSummary": "Full-stack product management site using HTML, JavaScript, Node.js/Express and MySQL to add, update and delete products and categories."
+  },
+  {
+    "slug": "quantitative-analysis",
+    "title": "Quantitative Analysis",
+    "summary": "Conducted statistical tests(chi-square, correlation) in excel & python to validate hypothesis and assess data relationships, and applied linear regression for dataset splitting and model accuracy.",
+    "image": "images/Project-Cards/QUAS.png",
+    "alt": "Quantitative analysis",
+    "recent": true,
+    "relevant": true,
+    "mini": false,
+    "detail": {
+      "contribution": "Ran chi-square tests in Excel and built a multiple linear regression model in Python, including data cleaning, feature selection and ANOVA evaluation.",
+      "tools": ["Excel", "Python", "Chi-square tests", "Multiple linear regression", "ANOVA"],
+      "result": {
+        "text": "The multiple linear regression model for car prices reached an R² of 0.831 (adjusted R² 0.825) on 163 observations.",
+        "image": "images/QUAS/quas-model-feature-evaluation.jpeg",
+        "alt": "Result evidence: Regression output screenshot"
+      },
+      "gallery": [
+        {
+          "src": "images/QUAS/quas-task1-dataset.jpeg",
+          "caption": "Chi-Square Goodness-Of-Fit Test (1/2)"
+        },
+        {
+          "src": "images/QUAS/quas-task1.jpeg",
+          "caption": "Chi-Square Goodness-Of-Fit Test (2/2)"
+        },
+        {
+          "src": "images/QUAS/quas-task2-dataset.jpeg",
+          "caption": "Chi-Square Test Of Independence (1/2)"
+        },
+        {
+          "src": "images/QUAS/quas-task2.jpeg",
+          "caption": "Chi-Square Test Of Independence (2/2)"
+        },
+        {
+          "src": "images/QUAS/quas-dataset.jpeg",
+          "caption": "Multiple Linear Regression Model"
+        },
+        {
+          "src": "images/QUAS/quas-residuals.jpeg",
+          "caption": "Model Fitting & Testing (1/3)"
+        },
+        {
+          "src": "images/QUAS/quas-correlation.jpeg",
+          "caption": "Model Fitting & Testing (2/3)"
+        },
+        {
+          "src": "images/QUAS/quas-model-feature-evaluation.jpeg",
+          "caption": "Model Fitting & Testing (3/3)"
+        }
+      ]
+    },
+    "cardSummary": "Tested hypotheses with chi-square tests in Excel and built a multiple linear regression model in Python for car prices (R² 0.831)."
+  },
+  {
+    "slug": "data-warehouse",
+    "title": "Data Warehouse & Business Intelligence",
+    "summary": "Built a data warehouse using SQL and used Alteryx for ETL and to create visuals showing trends and insights for business improvement.",
+    "image": "images/Project-Cards/dwbi-starschema.jpeg",
+    "alt": "Data Warehouse & Business Intelligence",
+    "recent": true,
+    "relevant": true,
+    "mini": false,
+    "detail": {
+      "contribution": "Designed the star schema in SQL, prepared and cleaned the booking data in Alteryx, then built the visuals and recommendations.",
+      "tools": ["MySQL", "Alteryx", "Star schema"],
+      "result": null,
+      "gallery": [
+        {
+          "src": "images/DWBI/dwbi-starschema.jpeg",
+          "caption": "Data Warehouse - Star Schema Design"
+        },
+        {
+          "src": "images/DWBI/dwbi-cleaning.jpeg",
+          "caption": "Data Preparation"
+        },
+        {
+          "src": "images/DWBI/dwbi-transformation-visual.JPG",
+          "caption": "Transformations & Visualizations - Recommendations To Stakeholders (1/2)"
+        },
+        {
+          "src": "images/DWBI/dwbi-visual.jpeg",
+          "caption": "Transformations & Visualizations - Recommendations To Stakeholders (2/2)"
+        }
+      ]
+    },
+    "cardSummary": "Designed a SQL star-schema data warehouse and used Alteryx for ETL and visuals that show business trends and recommendations."
+  },
+  {
+    "slug": "data-visualization-analytics",
+    "title": "Data Visualization & Analytics",
+    "summary": "Performed cleaning, transformation, clustering, and regression analysis using KNIME, and built Power BI dashboards to uncover customer behavior and insights.",
+    "image": "images/Project-Cards/dava-workflow.jpeg",
+    "alt": "Data Warehouse & Business Intelligence",
+    "recent": true,
+    "relevant": true,
+    "mini": false,
+    "detail": {
+      "contribution": "Cleaned and transformed the data in KNIME, formed four K-Means clusters, trained a linear regression model and visualised results in Power BI.",
+      "tools": ["KNIME", "Power BI", "K-Means", "Linear regression"],
+      "result": {
+        "text": "The linear regression model predicting restaurant ratings reached an R² of 0.823 with a mean absolute error of 0.116.",
+        "image": "images/DAVA/dava-model-stat.jpeg",
+        "alt": "Result evidence: KNIME model statistics screenshot"
+      },
+      "gallery": [
+        {
+          "src": "images/DAVA/dava-cleaning.jpeg",
+          "caption": "Cleaning & Transformation"
+        },
+        {
+          "src": "images/DAVA/dava-cluster-workflow.jpeg",
+          "caption": "K-Means Clustering (1/2)"
+        },
+        {
+          "src": "images/DAVA/revamped-dashboard.png",
+          "caption": "K-Means Clustering (2/2)"
+        },
+        {
+          "src": "images/DAVA/dava-model-workflow.jpeg",
+          "caption": "Linear Regression Model (1/3)"
+        },
+        {
+          "src": "images/DAVA/dava-model-stat.jpeg",
+          "caption": "Linear Regression Model (2/3)"
+        }
+      ]
+    },
+    "cardSummary": "Cleaned data and built K-Means clusters and a regression model in KNIME to predict restaurant ratings (R² 0.823), visualised in Power BI."
+  },
+  {
+    "slug": "data-engineering-cloud",
+    "title": "Data Engineering in the Cloud",
+    "summary": "Built a data pipeline for cloud-based analytics solutions.",
+    "image": "images/Project-Cards/data-engineering.jpeg",
+    "alt": "Data engineering in the cloud",
+    "recent": true,
+    "relevant": true,
+    "mini": false,
+    "detail": {
+      "contribution": "Built an automated AWS ETL pipeline on SingStat data, with cost monitoring, access security and automated Power BI refresh.",
+      "tools": [
+        "Python",
+        "AWS Lambda",
+        "Step Functions",
+        "S3",
+        "Glue",
+        "Athena",
+        "SNS",
+        "IAM",
+        "KMS",
+        "Power BI"
+      ],
+      "result": {
+        "text": "An end-to-end automated pipeline that ingests, cleans and transforms SingStat data, with Power BI data loading scheduled every 4 hours and a budget alert.",
+        "image": "images/DAEC/daec-step-function.jpeg",
+        "alt": "Result evidence: Described in the project write-up"
+      },
+      "gallery": [
+        {
+          "src": "images/DAEC/daec-step-function.jpeg",
+          "caption": "ETL automation"
+        },
+        {
+          "src": "images/DAEC/daec-cost-explorer.jpeg",
+          "caption": "Cost Monitoring"
+        },
+        {
+          "src": "images/DAEC/daec-iam.jpeg",
+          "caption": "Security & Access (1/3)"
+        },
+        {
+          "src": "images/DAEC/daec-kms.jpeg",
+          "caption": "Security & Access (2/3)"
+        },
+        {
+          "src": "images/DAEC/daec-cloudtrail.jpeg",
+          "caption": "Security & Access (3/3)"
+        },
+        {
+          "src": "images/DAEC/daec-credentials.jpeg",
+          "caption": "Automated Data Loading & Dashboard Creation (1/2)"
+        },
+        {
+          "src": "images/DAEC/revamped-dashboard.png",
+          "caption": "Automated Data Loading & Dashboard Creation (2/2)"
+        }
+      ]
+    },
+    "cardSummary": "Built an automated AWS ETL pipeline on SingStat data with cost monitoring, access security and scheduled Power BI refresh."
+  },
+  {
+    "slug": "ux-prototyping",
+    "title": "UX Design and Application Prototyping",
+    "summary": "Designed and developed app prototypes, including rewards and music apps, with a focus on user experience and intuitive interfaces.",
+    "image": "images/Project-Cards/adobe.jpeg",
+    "alt": "UX Design and Application Prototyping",
+    "recent": false,
+    "relevant": false,
+    "mini": false,
+    "detail": {
+      "contribution": "Created the persona, storyboard, and low- and high-fidelity prototypes, ran usability testing with the System Usability Scale, and refined the final design.",
+      "tools": ["Adobe XD", "System Usability Scale", "Usability testing"],
+      "result": {
+        "text": "A System Usability Scale score of 85 was recorded for one test user.",
+        "image": "images/UXID/uxid-sus-score.jpeg",
+        "alt": "Result evidence: SUS score sheet screenshot (single user sheet)"
+      },
+      "gallery": [
+        {
+          "src": "images/UXID/uxid-lowfi.jpeg",
+          "caption": "Persona, Storyboard, Low-Fidelity Prototype"
+        },
+        {
+          "src": "images/UXID/uxid-highfi.jpeg",
+          "caption": "High-Fidelity Prototype"
+        },
+        {
+          "src": "images/UXID/uxid-user-interaction.jpg",
+          "caption": "Usability Testing (1/2)"
+        },
+        {
+          "src": "images/UXID/uxid-sus-score.jpeg",
+          "caption": "Usability Testing (2/2)"
+        },
+        {
+          "src": "images/UXID/uxid-improved.jpeg",
+          "caption": "Improved & Finalized High-Fidelity Prototype"
+        }
+      ]
+    },
+    "cardSummary": "Designed rewards and music app prototypes, from persona to high-fidelity design, refined through System Usability Scale testing."
+  },
+  {
+    "slug": "personal-finance-tracker",
+    "title": "Personal Finance Tracker",
+    "summary": "Created an Excel-based personal finance tracker using formulas to monitor, categorize, and sum up spending for effective budget management.",
+    "image": "images/Project-Cards/accounting.jpeg",
+    "alt": "Personal finance tracker",
+    "recent": false,
+    "relevant": false,
+    "mini": true,
+    "detail": {
+      "contribution": "Built an Excel finance tracker with validation formulas and linked it to Tableau dashboards through Google Drive.",
+      "tools": ["Excel", "Google Sheets", "Tableau"],
+      "result": null,
+      "gallery": [
+        {
+          "src": "images/Accounting/transaction-records.jpeg",
+          "caption": "Transaction Records & Overall Finance (1/2)"
+        },
+        {
+          "src": "images/Accounting/finance.jpeg",
+          "caption": "Transaction Records & Overall Finance (2/2)"
+        },
+        {
+          "src": "images/Accounting/debt-owed.jpeg",
+          "caption": "Debt Owed/Receivable (1/2)"
+        },
+        {
+          "src": "images/Accounting/debt-receive.jpeg",
+          "caption": "Debt Owed/Receivable (2/2)"
+        },
+        {
+          "src": "images/Accounting/accounting-dashboard.jpeg",
+          "caption": "Dashboarding & Analytical Insights"
+        }
+      ]
+    },
+    "cardSummary": "Excel finance tracker with validation formulas to categorise and total spending, linked to Tableau dashboards via Google Drive."
+  },
+  {
+    "slug": "data-storytelling-hackathon-school",
+    "title": "Data Storytelling (OCBC Hackathon Ignite 2025/School Project)",
+    "summary": "Performed data cleaning and integration, developed visualizations, and combined them into a cohesive data story using Tableau to deliver actionable insights to stakeholders through cross-collaboration with other domains.",
+    "image": "images/Project-Cards/revamped-dashboard.png",
+    "alt": "Data Storytelling (OCBC Hackathon Ignite 2025/School Project)",
+    "recent": true,
+    "relevant": true,
+    "mini": false,
+    "detail": {
+      "contribution": "Cleaned and integrated branch and call data, built visualisations and clustering/predictive models, and combined them into a data story with recommendations for OCBC, earning the team third place in the Hackathon.",
+      "tools": ["Tableau", "Clustering", "Predictive modelling"],
+      "result": null,
+      "gallery": [
+        {
+          "src": "images/DAST/dast-hackathon-distinction.jpeg",
+          "caption": "OCBC Ignite Hackathon 2024/School Individual Project"
+        },
+        {
+          "src": "images/DAST/dast-cleaning.jpeg",
+          "caption": "Data Management (1/3)"
+        },
+        {
+          "src": "images/DAST/dast-transformation.jpeg",
+          "caption": "Data Management (2/3)"
+        },
+        {
+          "src": "images/DAST/dast-integration.jpeg",
+          "caption": "Data Management (3/3)"
+        },
+        {
+          "src": "images/DAST/revamped-cluster-chart.png",
+          "caption": "Data Visualizations & Analytical Insights (1/2)"
+        },
+        {
+          "src": "images/DAST/dast-clusterchart2.jpeg",
+          "caption": "Data Visualizations & Analytical Insights (2/2)"
+        },
+        {
+          "src": "images/DAST/revamped-dashboard.png",
+          "caption": "Data Storytelling & Recommendations"
+        }
+      ]
+    },
+    "cardTitle": "Data Storytelling (OCBC Hackathon Ignite 2025)",
+    "pageSummary": "Represented Temasek Polytechnic in a OCBC Ignite Hackathon. Performed data cleaning and integration, developed visualizations, and combined them into a cohesive data story using Tableau to deliver actionable insights to stakeholders through cross-collaboration with other domains.",
+    "cardSummary": "Third place at the OCBC Ignite Hackathon, representing Temasek Polytechnic: integrated branch and call data into a Tableau data story with recommendations."
+  },
+  {
+    "slug": "data-storytelling-idl",
+    "title": "Data-Storytelling (Interdisciplinary Learning)",
+    "summary": "Performed data cleaning and integration, developed visualizations, and combined them into a cohesive data story using Tableau to deliver actionable insights to stakeholders.",
+    "image": "images/Project-Cards/revamped-dashboard-2.png",
+    "alt": "Interdisciplinary Learning, Data Storytelling",
+    "recent": true,
+    "relevant": true,
+    "mini": false,
+    "detail": {
+      "contribution": "Gathered requirements, cleaned and transformed manufacturing data, identified underlying patterns through exploratory analysis, and developed Tableau visualisations to present findings and actionable recommendations.",
+      "tools": [
+        "Tableau",
+        "Data cleaning",
+        "Data Transformation",
+        "Interdisciplinary Collaboration",
+        "Data storytelling"
+      ],
+      "result": null,
+      "gallery": [
+        {
+          "src": "images/IDL/idl-pharm-exchange.jpeg",
+          "caption": "Domain Understanding (1/2)"
+        },
+        {
+          "src": "images/IDL/idl-bigdata-exchange.png",
+          "caption": "Domain Understanding (2/2)"
+        },
+        {
+          "src": "images/IDL/idl-transformation.jpeg",
+          "caption": "Data Management (1/2)"
+        },
+        {
+          "src": "images/IDL/idl-integration.jpeg",
+          "caption": "Data Management (2/2)"
+        },
+        {
+          "src": "images/IDL/revamped-dashboard-1.png",
+          "caption": "Data Visualizations & Analytical Insights"
+        },
+        {
+          "src": "images/IDL/idl-recommendations.jpeg",
+          "caption": "Data Storytelling & Recommendations (1/2)"
+        },
+        {
+          "src": "images/IDL/revamped-dashboard-2.png",
+          "caption": "Data Storytelling & Recommendations (2/2)"
+        }
+      ]
+    },
+    "heading": "Data-Storytelling",
+    "cardTitle": "Interdisciplinary Data-Storytelling",
+    "pageSummary": "Partnered with Pharmaceutical Science students on an interdisciplinary project to analyse manufacturing data and address their analytical requirements.",
+    "cardSummary": "Partnered with Pharmaceutical Science students to analyse manufacturing data and present Tableau findings and recommendations."
+  },
+  {
+    "slug": "machine-learning",
+    "title": "Machine Learning & Decision making",
+    "summary": "Predictive modeling using Python was used to uncover key drivers, make accurate predictions, and generate actionable recommendations for improved decision-making.",
+    "image": "images/Project-Cards/machine_learning.jpeg",
+    "alt": "Machine Learning & Decision Making",
+    "recent": true,
+    "relevant": true,
+    "mini": false,
+    "detail": {
+      "contribution": "Compared encoding methods, engineered features, selected a model, explained predictions with SHAP and documented model limitations.",
+      "tools": [
+        "Python",
+        "Decision Tree",
+        "Random Forest",
+        "GridSearchCV",
+        "Permutation importance",
+        "SHAP"
+      ],
+      "result": {
+        "text": "Random Forest outperformed Decision Tree in cross-validation: test R² 0.508 vs 0.494 and test MAE 1.219 vs 1.286.",
+        "image": "images/MLDM/mldm-model-selection.jpeg",
+        "alt": "Result evidence: Model comparison screenshot"
+      },
+      "gallery": [
+        {
+          "src": "images/MLDM/mldm-encoding.jpeg",
+          "caption": "Data Preprocessing"
+        },
+        {
+          "src": "images/MLDM/mldm-feature-engineering.jpeg",
+          "caption": "Feature Engineering & Permutation Importance (1/2)"
+        },
+        {
+          "src": "images/MLDM/mldm-PFI.jpeg",
+          "caption": "Feature Engineering & Permutation Importance (2/2)"
+        },
+        {
+          "src": "images/MLDM/mldm-feature-selection.jpeg",
+          "caption": "Feature & Model selection (1/2)"
+        },
+        {
+          "src": "images/MLDM/mldm-model-selection.jpeg",
+          "caption": "Feature & Model selection (2/2)"
+        },
+        {
+          "src": "images/MLDM/mldm-SHAP.jpeg",
+          "caption": "Recommendations To Stakeholders"
+        },
+        {
+          "src": "images/MLDM/mldm-model-limitations.jpeg",
+          "caption": "Model Evaluation & Limitations"
+        }
+      ]
+    },
+    "cardSummary": "Compared Decision Tree and Random Forest models in Python and explained predictions with SHAP. Random Forest performed best (test R² 0.508)."
+  },
+  {
+    "slug": "text-analytics",
+    "title": "Text Social Media Analytics",
+    "summary": "Used text analytic techniques to gather and analyze data, uncover insights, and generate actionable recommendations.",
+    "image": "images/Project-Cards/text_analytics.jpeg",
+    "alt": "Text Social Media Analytics",
+    "recent": true,
+    "relevant": true,
+    "mini": false,
+    "detail": {
+      "contribution": "Scraped Google reviews, preprocessed the text, mapped a sentiment lexicon and built sentiment, word cloud, topic and clustering visuals.",
+      "tools": ["PhantomBuster", "Python", "SAS", "Tableau", "VADER lexicon"],
+      "result": null,
+      "gallery": [
+        {
+          "src": "images/TSAL/text-dataset.jpeg",
+          "caption": "Data Scraping"
+        },
+        {
+          "src": "images/TSAL/text-cleaning.jpeg",
+          "caption": "Data Preprocessing & Vader Lexicon Mapping (1/2)"
+        },
+        {
+          "src": "images/TSAL/sentiment-mapping.jpeg",
+          "caption": "Data Preprocessing & Vader Lexicon Mapping (2/2)"
+        },
+        {
+          "src": "images/TSAL/sentiment-bar.jpeg",
+          "caption": "Sentiment Analysis (1/2)"
+        },
+        {
+          "src": "images/TSAL/sentiment-pie.jpeg",
+          "caption": "Sentiment Analysis (2/2)"
+        },
+        {
+          "src": "images/TSAL/word-cloud.jpeg",
+          "caption": "Additional Visualizations (1/2)"
+        },
+        {
+          "src": "images/TSAL/topic-modelling.jpeg",
+          "caption": "Additional Visualizations (2/2)"
+        },
+        {
+          "src": "images/TSAL/text-cluster-groups.jpeg",
+          "caption": "Clustering & Modelling (1/2)"
+        },
+        {
+          "src": "images/TSAL/text-modelling.jpeg",
+          "caption": "Clustering & Modelling (2/2)"
+        }
+      ]
+    },
+    "cardSummary": "Scraped Google reviews and built sentiment, word cloud, topic and clustering visuals to produce actionable recommendations."
+  },
+  {
+    "slug": "data-mining-analytics",
+    "title": "Data Mining & Analytics",
+    "summary": "A combination of Python and SAS was used for prediction, identifying key factors, and deliver insights to stakeholders.",
+    "image": "images/Project-Cards/data_mining.jpeg",
+    "alt": "Data-Mining & Business Analytics",
+    "recent": true,
+    "relevant": true,
+    "mini": false,
+    "detail": {
+      "contribution": "Integrated three datasets, engineered features, handled class imbalance and built interpretable models to predict serious-injury accidents.",
+      "tools": ["SAS", "Python", "SMOTE", "Logistic regression", "Decision tree"],
+      "result": null,
+      "gallery": [
+        {
+          "src": "images/DMBA/dmba-preprocessing.jpeg",
+          "caption": "Data Preprocessing & Integration"
+        },
+        {
+          "src": "images/DMBA/dmba-feature-engineering.jpeg",
+          "caption": "Feature Engineering & Supplementary datasets (1/2)"
+        },
+        {
+          "src": "images/DMBA/dmba-supplementery.jpeg",
+          "caption": "Feature Engineering & Supplementary datasets (2/2)"
+        },
+        {
+          "src": "images/DMBA/dmba-weights.jpeg",
+          "caption": "Addressing Dataset Imbalance"
+        },
+        {
+          "src": "images/DMBA/dmba-workflow.jpeg",
+          "caption": "Feature Selection & Modelling"
+        },
+        {
+          "src": "images/DMBA/dmba-recommendations.jpeg",
+          "caption": "Recommendations To Stakeholders"
+        }
+      ]
+    },
+    "cardSummary": "Integrated three datasets in Python and SAS and built interpretable models to predict serious-injury accidents."
+  }
+]

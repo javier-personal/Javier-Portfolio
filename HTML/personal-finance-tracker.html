@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Personal Finance Tracker | Javier Tan</title>
+    <meta
+      name="description"
+      content="Created an Excel-based personal finance tracker using formulas to monitor, categorize, and sum up spending for effective budget management."
+    />
+    <link rel="stylesheet" href="../css/base.css?v=3" />
+    <link rel="stylesheet" href="../css/components.css?v=3" />
+    <link rel="stylesheet" href="../css/pages.css?v=3" />
+    <style>
+      /* My Development Journey: vertical timeline (this page only) */
+      .journey-card {
+        grid-column: 1 / -1;
+        padding-bottom: 1.75rem;
+      }
+      .journey-card h2 {
+        margin-bottom: 1.5rem;
+      }
+      .journey {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .journey li {
+        position: relative;
+        display: grid;
+        grid-template-columns: 2.6rem 1fr;
+        column-gap: 1.25rem;
+        padding-bottom: 2rem;
+      }
+      .journey li:last-child {
+        padding-bottom: 0;
+      }
+      .journey li::after {
+        content: "";
+        position: absolute;
+        left: calc(1.3rem - 1px);
+        top: 3.1rem;
+        bottom: 0.5rem;
+        width: 2px;
+        background: rgba(116, 101, 143, 0.25);
+      }
+      .journey li:last-child::after {
+        display: none;
+      }
+      .journey .num {
+        width: 2.6rem;
+        height: 2.6rem;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: var(--purple);
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.95rem;
+        letter-spacing: 0.02em;
+      }
+      .journey .step-body {
+        min-width: 0;
+        padding-top: 0.1rem;
+      }
+      .journey .kicker {
+        display: block;
+        margin-bottom: 0.3rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--purple);
+      }
+      .journey h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1.15rem;
+        color: var(--purple-deep);
+      }
+      .journey p {
+        margin: 0;
+        line-height: 1.65;
+      }
+      .fact .journey-end {
+        margin: 2rem 0 0;
+        padding: 1.4rem 1.5rem;
+        border-radius: 14px;
+        background: rgba(116, 101, 143, 0.09);
+      }
+      .journey-divider {
+        border: 0;
+        border-top: 1px solid rgba(116, 101, 143, 0.2);
+        margin: 2rem 0 0;
+      }
+      .journey-end .kicker {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--purple);
+      }
+      .journey-end .lead {
+        display: block;
+        font-size: 1.05rem;
+        line-height: 1.65;
+        font-weight: 500;
+        color: #2b2438;
+      }
+      @media (max-width: 600px) {
+        .journey-card {
+          padding-bottom: 1.25rem;
+        }
+        .journey li {
+          grid-template-columns: 2.2rem 1fr;
+          column-gap: 0.9rem;
+          padding-bottom: 1.5rem;
+        }
+        .journey .num {
+          width: 2.2rem;
+          height: 2.2rem;
+          font-size: 0.85rem;
+        }
+        .journey li::after {
+          left: calc(1.1rem - 1px);
+          top: 2.7rem;
+        }
+        .fact .journey-end {
+          padding: 1.1rem 1.1rem;
+          margin-top: 1.5rem;
+        }
+        .journey-divider {
+          margin-top: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="glass-page" data-root="../" data-nav="projects.html">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" id="site-header"></header>
+    <main id="main" class="page-wrap project">
+      <a class="back-link" href="projects.html"
+        ><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+        Back to Projects</a
+      >
+      <section class="project-hero glass">
+        <h1>Personal Finance Tracker</h1>
+        <p class="summary">
+          Created a personal finance app that combines expense tracking, budgeting, savings management and 
+          data analytics to help users understand their spending habits, monitor financial progress and make 
+          better financial decisions.
+        </p>
+      </section>
+      <div class="facts">
+        <section class="fact glass">
+          <h2>My contribution</h2>
+          <p>
+            
+            Independently conceptualised, designed and developed the application, 
+            covering its UI/UX, database architecture, authentication, financial management features 
+            and interactive data analytics dashboard.
+
+          </p>
+        </section>
+      
+        <section class="fact glass">
+          <h2>Tools</h2>
+          <ul class="tags">
+            <li>Excel</li>
+            <li>Google Sheets</li>
+            <li>Tableau</li>
+            <li>Power BI</li>
+            <li>Notes</li>
+            <li>Next.js</li>
+            <li>React</li>
+            <li>Supabase</li>
+            <li>Github</li>
+            <li>Vercel</li>
+          </ul>
+        </section>
+
+        <section class="fact glass journey-card">
+          <h2>My Development Journey</h2>
+          <ol class="journey">
+            <li>
+              <span class="num" aria-hidden="true">01</span>
+              <div class="step-body">
+                <span class="kicker">The beginning</span>
+                <h3>Notes app</h3>
+                <p>Started tracking my finances here, but manual calculations and record-keeping became tedious.</p>
+              </div>
+            </li>
+            <li>
+              <span class="num" aria-hidden="true">02</span>
+              <div class="step-body">
+                <span class="kicker">Automation &amp; analytics</span>
+                <h3>Excel, Tableau &amp; Power BI</h3>
+                <p>Automated calculations, organised transactions and tracked debts, then connected the data to Tableau and Power BI to understand my spending habits.</p>
+              </div>
+            </li>
+            <li>
+              <span class="num" aria-hidden="true">03</span>
+              <div class="step-body">
+                <span class="kicker">Design, development &amp; testing</span>
+                <h3>Full application</h3>
+                <p>Outgrew spreadsheets and built an app through planning, prototyping, development and multiple rounds of user testing. I gathered feedback, monitored difficulties and refined it across versions before deployment.</p>
+              </div>
+            </li>
+          </ol>
+          <hr class="journey-divider" />
+          <div class="journey-end">
+            <span class="kicker">From personal need to shared solution</span>
+            <span class="lead">What began as a personal solution grew into an opportunity to combine my knowledge of technology and data analytics to help myself, and others to manage their finances.</span>
+          </div>
+        </section>
+
+      </div>
+      <h2 class="section-title">Project visuals</h2>
+      <p class="gallery-count">5 images. Select one to enlarge.</p>
+      <div class="shots" data-lightbox-group>
+        <figure class="shot glass">
+          <button class="zoomable" aria-label="Enlarge: Debt Owed/Receivable (2/2)">
+            <img
+              src="../images/Accounting/old-accounting-notes.png"
+              alt="Debt Owed/Receivable (2/2)"
+              loading="lazy"
+            /><span class="zoom-badge"
+              ><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <circle cx="11" cy="11" r="7" />
+                <path d="M21 21l-4.3-4.3M11 8v6M8 11h6" /></svg
+            ></span>
+          </button>
+          <figcaption>Accounting Using Notes App</figcaption>
+        </figure>
+        <figure class="shot glass">
+          <button
+            class="zoomable"
+            aria-label="Enlarge: Transaction Records &amp; Overall Finance (1/2)"
+          >
+            <img
+              src="../images/Accounting/excel-transactions.png"
+              alt="Transaction Records &amp; Overall Finance (1/2)"
+              loading="lazy"
+            /><span class="zoom-badge"
+              ><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <circle cx="11" cy="11" r="7" />
+                <path d="M21 21l-4.3-4.3M11 8v6M8 11h6" /></svg
+            ></span>
+          </button>
+          <figcaption>Transaction Records &amp; Overall Finance (1/2)</figcaption>
+        </figure>
+        <figure class="shot glass">
+          <button class="zoomable" aria-label="Enlarge: Debt Owed/Receivable (1/2)">
+            <img
+              src="../images/Accounting/excel-owe-me.png"
+              alt="Debt Owed/Receivable (1/2)"
+              loading="lazy"
+            /><span class="zoom-badge"
+              ><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <circle cx="11" cy="11" r="7" />
+                <path d="M21 21l-4.3-4.3M11 8v6M8 11h6" /></svg
+            ></span>
+          </button>
+          <figcaption>Debt Owed/Receivable (1/2)</figcaption>
+        </figure>
+        <figure class="shot glass">
+          <button class="zoomable" aria-label="Enlarge: Debt Owed/Receivable (2/2)">
+            <img
+              src="../images/Accounting/excel-owe-people.png"
+              alt="Debt Owed/Receivable (2/2)"
+              loading="lazy"
+            /><span class="zoom-badge"
+              ><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <circle cx="11" cy="11" r="7" />
+                <path d="M21 21l-4.3-4.3M11 8v6M8 11h6" /></svg
+            ></span>
+          </button>
+          <figcaption>Debt Owed/Receivable (2/2)</figcaption>
+        </figure>
+        <figure class="shot glass">
+          <button class="zoomable" aria-label="Enlarge: Debt Owed/Receivable (2/2)">
+            <img
+              src="../images/Accounting/excel-savings.png"
+              alt="Debt Owed/Receivable (2/2)"
+              loading="lazy"
+            /><span class="zoom-badge"
+              ><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <circle cx="11" cy="11" r="7" />
+                <path d="M21 21l-4.3-4.3M11 8v6M8 11h6" /></svg
+            ></span>
+          </button>
+          <figcaption>Savings & Goals</figcaption>
+        </figure>
+        <figure class="shot glass">
+          <button class="zoomable" aria-label="Enlarge: Dashboarding &amp; Analytical Insights">
+            <img
+              src="../images/Accounting/accounting-dashboard.jpeg"
+              alt="Dashboarding &amp; Analytical Insights"
+              loading="lazy"
+            /><span class="zoom-badge"
+              ><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <circle cx="11" cy="11" r="7" />
+                <path d="M21 21l-4.3-4.3M11 8v6M8 11h6" /></svg
+            ></span>
+          </button>
+          <figcaption>Analytical Insights (Tableau/Power BI)</figcaption>
+        </figure>
+        <figure class="shot glass">
+          <button class="zoomable" aria-label="Enlarge: Dashboarding &amp; Analytical Insights">
+            <img
+              src="../images/Accounting/current-app.png"
+              alt="Dashboarding &amp; Analytical Insights"
+              loading="lazy"
+            /><span class="zoom-badge"
+              ><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <circle cx="11" cy="11" r="7" />
+                <path d="M21 21l-4.3-4.3M11 8v6M8 11h6" /></svg
+            ></span>
+          </button>
+          <figcaption>Full-fledged Application</figcaption>
+        </figure>
+      </div>
+      <p class="page-end">
+        <a class="btn btn-glass" href="projects.html"
+          ><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+          Back to Projects</a
+        >
+      </p>
+    </main>
+    <footer class="site-footer glass">
+      <p>
+        &copy; <span id="year">2026</span> Javier Tan. All rights reserved. Fully coded website 😄
+      </p>
+    </footer>
+    <button class="to-top" aria-label="Back to top"></button>
+    <script src="../JS/site.js?v=3"></script>
+  </body>
+</html>

@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Task 3: DevOps Framework Design | OCBC Internship</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #121222;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    
+    .header h1 {
+      font-size: 28px;
+      color: #e60012;
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-buttons button {
+      padding: 14px 24px;
+      font-size: 16px;
+      background: #1d1d33;
+      color: white;
+      border: 2px solid #e60012;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .nav-buttons button:hover {
+      background: #e60012;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+      grid-auto-flow: dense;
+    }
+
+    .card {
+      background: #1d1d33;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+
+    .card h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #bbb;
+    }
+
+    .bar-chart {
+      height: 100px;
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .bar {
+      width: 20%;
+      background: #e60012;
+      border-radius: 4px;
+    }
+
+    .gauge-container {
+      width: 120px;
+      height: 60px;
+      border-radius: 60px 60px 0 0;
+      background: conic-gradient(#e60012 0% 25%, #333 25% 100%);
+      position: relative;
+    }
+
+    .gauge-container::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 4px;
+      height: 60px;
+      background: white;
+      transform: rotate(-50deg);
+      transform-origin: bottom;
+    }
+
+    .matrix {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .matrix div {
+      background: #292947;
+      padding: 8px;
+      text-align: center;
+      font-size: 14px;
+      border-radius: 4px;
+    }
+
+    .carousel {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+    }
+
+    .carousel img {
+      height: 100px;
+      border-radius: 6px;
+    }
+
+    .checklist label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    /* Responsive and rearranged cards */
+    .card1 { grid-column: span 6; grid-row: span 1; }
+.card2 { grid-column: span 3; grid-row: span 1; }
+.card3 { grid-column: span 3; grid-row: span 1; }
+
+    .card4 { grid-column: span 5; grid-row: span 1; }
+    .card5 { grid-column: span 7; grid-row: span 1; }
+
+    @media (max-width: 1000px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+      .card1, .card2, .card3, .card4, .card5 {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+        height: auto;
+      }
+    }
+
+    .dashboard-view {
+      display: none;
+    }
+
+    .dashboard-view.active {
+      display: block;
+    }
+
+    .header {
+      position: relative;
+      text-align: center;
+      margin-bottom: 30px;
+      padding-top: 50px;
+      padding: 20px 0;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      color: #e60012;
+      margin: 0;
+    }
+
+    .back-link:hover {
+      background: #e60012;
+      color: white;
+    }
+
+    .gantt-chart {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      height: auto;
+    }
+
+    .task-row {
+      position: relative;
+      height: 24px;
+      background: #222;
+      border-radius: 4px;
+      padding-left: 0px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+    }
+
+    .task-label {
+      position: absolute;
+      left: 0;
+      width: 120px;
+      text-align: right;
+      padding-right: 10px;
+      color: #aaa;
+      font-weight: bold;
+      white-space: nowrap;     /* ✅ Prevents line break */
+      overflow: hidden;        /* ✅ Hides anything beyond the width */
+      text-overflow: ellipsis; /* ✅ Adds "..." if the text is too long */
+    }
+
+    .task-bar {
+      position: absolute;
+      height: 100%;
+      background: #e60012;
+      color: white;
+      text-align: center;
+      line-height: 24px;
+      border-radius: 4px;
+      font-size: 11px;
+      padding: 0 6px;
+      white-space: nowrap;
+    }
+
+    .task-bar.pending {
+      background: #444;
+      border: 1px dashed #e60012;
+      color: #ccc;
+    }
+
+    .task-carousel {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .task-carousel img {
+      height: 100px;
+      border-radius: 6px;
+    }
+
+    .task-carousel button {
+      padding: 10px 16px;
+      background: #1d1d33;
+      color: white;
+      border: 2px solid #e60012;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .task-carousel button:hover {
+      background: #e60012;
+    }
+
+    .task-carousel-content {
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .task-carousel-content img {
+      width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+
+    #task-desc {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .task-carousel-controls {
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .task-carousel-controls button {
+      padding: 10px 18px;
+      background: #1d1d33;
+      color: white;
+      border: 2px solid #e60012;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.2s;
+    }
+
+    .task-carousel-controls button:hover {
+      background: #e60012;
+    }
+
+    h2 {
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .card img {
+      max-width: 95%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 0;
+    }
+
+   .magnify-icon {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(219, 219, 219, 0.9);
+  color: white;
+  padding: 4px 6px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  z-index: 10;
+}
+
+
+.image-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+}
+
+.image-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border: 4px solid white;
+  border-radius: 10px;
+}
+
+.image-modal:target {
+  display: flex;
+}
+
+.image-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 32px;
+  color: white;
+  cursor: pointer;
+}
+
+img {
+  border-radius: 0 !important;
+}
+
+#task-image {
+  max-width: 100%;  /* or any width you want */
+  height: auto;
+  display: block;
+}
+#jira-carousel-view {
+  max-height: 240px;
+  overflow: auto;
+}
+
+#jira-carousel-view img {
+  max-height: 160px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+#jira-task-desc {
+  font-size: 14px;
+  color: #ccc;
+  margin-top: 10px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 20px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.back-link {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  background: #1d1d33;
+  color: white;
+  border: 2px solid #e60012;
+  border-radius: 6px;
+  text-decoration: none;
+  padding: 10px 18px;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.back-link:hover {
+  background: #e60012;
+  color: white;
+}
+
+.center-title {
+  font-size: 28px;
+  color: #e60012;
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .back-link {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin-bottom: 10px;
+  }
+
+  .center-title {
+    font-size: 22px;
+  }
+
+  .h1{
+    font-size: 10px;
+  }
+}
+
+
+
+
+
+
+
+    .card-wide { grid-column: 1 / -1; }
+    .card-wide p, .card-wide li { font-size: 14px; color: #ccc; line-height: 1.55; }
+    .card-wide ul { margin: 4px 0 10px; padding-left: 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+<div class="header">
+  <a class="back-link" href="ocbc-intern.html"><b>← Back to OCBC intern home</b></a>
+  <h1 class="center-title">OCBC Task 3 DevOps Dashboard</h1>
+</div>
+
+
+
+  <h2>Task 3 documentation &amp; artefacts: the DevOps framework in one dashboard</h2>
+
+  <!-- GAP ANALYSIS, WORKFLOW, TASK OWNERSHIP -->
+<div id="overview" class="dashboard-view active">
+    <div class="dashboard-grid">
+
+      <!-- OVERVIEW -->
+      <div class="card card-wide">
+        <h3>Task Overview</h3>
+        <p><strong>Objective:</strong> Design and document the DevOps framework used to move data pipeline and dashboard work from requirements to deployment.</p>
+        <p><strong>Work undertaken:</strong></p>
+        <ul>
+          <li>Evaluated the existing pipeline and identified gaps (manual approvals delaying deployment, limited visibility of task ownership).</li>
+          <li>Proposed a revised workflow with automated approvals, pre-deployment validations and centralised documentation and task tracking.</li>
+          <li>Documented how Jira, Confluence, Infinity, Jenkins and Bitbucket fit together, and created internal workflow guides and checklists.</li>
+        </ul>
+        <p><strong>Tools:</strong> Jira, Confluence, Infinity, Jenkins, Bitbucket, Control-M, Agile sprint planning.</p>
+        <p><strong>Outcome:</strong> A documented end-to-end workflow with clear task ownership, checkpoints and tooling for the team.</p>
+      </div>
+
+      <!-- TASK OWNERSHIP -->
+    <div class="card card1">
+      <h3>Task Ownership & Stakeholder Communication</h3>
+      <p>Owners, tools and checkpoints for each stage:</p>
+      <table style="width:100%; border-collapse: collapse; color:#ccc; margin-top:10px;">
+        <thead>
+          <tr style="border-bottom: 1px solid #e60012;">
+            <th style="text-align:left; padding:6px;">Task</th>
+            <th style="text-align:left; padding:6px;">Owner</th>
+            <th style="text-align:left; padding:6px;">Tool</th>
+            <th style="text-align:left; padding:6px;">Checkpoint / Frequency</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>SQL View Development</td>
+            <td>Data Team</td>
+            <td>Bitbucket, Jenkins</td>
+            <td>Daily code review & automated testing</td>
+          </tr>
+          <tr>
+            <td>Dashboard Build</td>
+            <td>BI Team</td>
+            <td>Power BI, Confluence</td>
+            <td>Weekly review with stakeholders</td>
+          </tr>
+          <tr>
+            <td>Deployment</td>
+            <td>DevOps Team</td>
+            <td>Control-M, Jenkins</td>
+            <td>Pre-deployment checklist & QA sign-off</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+      <!-- GAP ANALYSIS -->
+    <div class="card card2">
+      <h3>Existing Pipeline Evaluation & Gap Analysis</h3>
+      <ul style="margin-top:10px;">
+        <li>Manual approvals cause delays in deployment.</li>
+        <li>Limited visibility of task ownership across teams.</li>
+      </ul>
+    </div>
+
+    <!-- PROPOSED WORKFLOW -->
+    <div class="card card3">
+      <h3>Proposed Workflow / Enhancements</h3>
+      <ul style="margin-top:10px;">
+        <li>Automated approvals via Jenkins and Control-M integration.</li>
+        <li>Pre-deployment validations to catch data quality issues.</li>
+        <li>Centralized documentation and task tracking in Confluence & Infinity.</li>
+      </ul>
+    </div>
+
+  <!-- OVERVIEW -->
+      <div class="card card1">
+        <h3>Agile + Sprint Deadline Tracker</h3>
+
+        <!-- Gantt Chart -->
+<div class="gantt-chart" id="gantt-view">
+  <div class="task-row">
+    <span class="task-label">Requirement</span>
+    <div class="task-bar" style="width: 15%; left: 45%;">Jul 1–Jul 3</div>
+  </div>
+  <div class="task-row">
+    <span class="task-label">SQL View</span>
+    <div class="task-bar" style="width: 40%; left: 38%;">Jul 3–Jul 6</div>
+  </div>
+  <div class="task-row">
+    <span class="task-label">UAT</span>
+    <div class="task-bar" style="width: 20%; left: 65%;">Jul 6–Jul 8</div>
+  </div>
+  <div class="task-row">
+    <span class="task-label">Deployment</span>
+    <div class="task-bar pending" style="width: 10%; left: 85%;">Pending</div>
+  </div>
+
+  <!-- Jumbled rows with new task titles -->
+  <div class="task-row">
+    <span class="task-label">Dashboard Fixes</span>
+    <div class="task-bar" style="width: 15%; left: 45%;">Jul 4–Jul 6</div>
+  </div>
+  <div class="task-row">
+    <span class="task-label">Data Ingestion</span>
+    <div class="task-bar" style="width: 15%; left: 55%;">Jul 2–Jul 5</div>
+  </div>
+  <div class="task-row">
+    <span class="task-label">Control-M Setup</span>
+    <div class="task-bar" style="width: 30%; left: 38%;">Jul 3–Jul 7</div>
+  </div>
+  <div class="task-row">
+    <span class="task-label">Access Config</span>
+    <div class="task-bar" style="width: 15%; left: 60%;">Jul 6–Jul 7</div>
+  </div>
+  <div class="task-row">
+    <span class="task-label">iView Connection</span>
+    <div class="task-bar" style="width: 20%; left: 38%;">Jul 3–Jul 5</div>
+  </div>
+  <div class="task-row">
+    <span class="task-label">PBIX Build</span>
+    <div class="task-bar" style="width: 30%; left: 50%;">Jul 5–Jul 8</div>
+  </div>
+  <div class="task-row">
+    <span class="task-label">Bug QA</span>
+    <div class="task-bar pending" style="width: 10%; left: 85%;">Pending</div>
+  </div>
+  <div class="task-row">
+    <span class="task-label">Final UAT</span>
+    <div class="task-bar" style="width: 20%; left: 65%;">Jul 7–Jul 9</div>
+  </div>
+</div>
+
+
+        <!-- Image and Description -->
+        <div class="task-carousel-content" id="carousel-view" style="display: none;">
+          <div style="position: relative; display: inline-block;">
+            <img id="task-image" src="" alt="Task Preview" class="zoomable">
+            <span class="magnify-icon" onclick="enlargeImage(this)">🔍</span>
+          </div>
+
+          <p id="task-desc"></p>
+        </div>
+
+        <div class="task-carousel-controls">
+          <button onclick="prevImage()">⬅</button>
+          <button onclick="nextImage()">➡</button>
+        </div>
+      </div>
+
+      <!-- Jenkins -->
+      <div class="card card2">
+        <h3>Jenkins</h3>
+        <div style="position: relative;">
+          <img src="../images/Task 3/jenkins.jpeg" alt="Jenkins Logo" class="zoomable" style="width:100%; max-height:100px; object-fit:contain; background:white; padding:10px; border-radius:6px;">
+          <span class="magnify-icon" onclick="enlargeImage(this)">🔍</span>
+        </div>
+        <p style="margin-top: 12px; font-size: 14px; color: #ccc;">
+          Jenkins automates the pipeline: once tasks are approved it triggers Control-M jobs, runs shell, Hive and Python scripts and validates files. A failed run highlights the exact step, which speeds up debugging and keeps deployments reliable.</p>
+      </div>
+
+      <!-- Bitbucket -->
+      <div class="card card3">
+        <h3>Bitbucket</h3>
+        <div style="position: relative;">
+          <img src="../images/Task 3/bitbucket.jpg" alt="Bitbucket Logo" class="zoomable" style="width:100%; max-height:100px; object-fit:contain; background:white; padding:10px; border-radius:6px;">
+          <span class="magnify-icon" onclick="enlargeImage(this)">🔍</span>
+        </div>
+        <p style="margin-top: 12px; font-size: 14px; color: #ccc;">
+          Bitbucket is the secure repository for all SQL scripts (ingestion, view creation, transformation). It tracks every change so code can be reviewed, compared and rolled back, and Jenkins pulls the latest scripts from it for production runs.</p>
+      </div>
+
+      <!-- Confluence -->
+      <div class="card card4">
+        <h3>Confluence</h3>
+        <div style="position: relative;">
+          <img src="../images/Task 3/confluence.png" alt="Confluence Logo" class="zoomable" style="width:100%; max-height:100px; object-fit:contain; background:white; padding:10px; border-radius:6px;">
+          <span class="magnify-icon" onclick="enlargeImage(this)">🔍</span>
+        </div>
+        <p style="margin-top: 12px; font-size: 14px; color: #ccc;">
+          Confluence is the central hub for requirement notes, decisions and updates. It supports embedded visuals, links to Jira tickets and version history for auditing.</p>
+      </div>
+
+      <div class="card card5">
+  <!-- Combine header and content in one flex row -->
+  <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">
+    
+    <!-- Left side: Header + Checklist -->
+    <div style="flex: 1 1 50%;">
+      <h3 style="margin-top: 0; margin-bottom: 15px;">Jira + Infinity Tasks</h3>
+      <div class="checklist">
+        <label><input type="checkbox" checked disabled> ✔ Discuss requirements</label>
+        <label><input type="checkbox" checked disabled> ✔ Create raw table for ingestion</label>
+        <label><input type="checkbox" checked disabled> ✔ Update mapping file</label>
+        <label><input type="checkbox" checked disabled> ✔ Connect iVew to PBIX</label>
+        <label><input type="checkbox" checked disabled> ✔ Job scheduling approval – Control-M</label>
+        <label><input type="checkbox" checked disabled> ✔ Deploy code & artefacts</label>
+        <label><input type="checkbox" checked disabled> ✔ Setup the access and permissions for A group</label>
+        <label><input type="checkbox" checked disabled> ✔ Setup the access and permissions for B group</label>
+        <label><input type="checkbox" checked disabled> ✔ Troubleshoot dashboard</label>
+        <label><input type="checkbox" checked disabled> ✔ Prepare configuration files for deployment</label>
+      </div>
+    </div>
+
+    <!-- Right side: Image + Carousel -->
+    <!-- Right side: Image + Carousel -->
+<div style="flex: 1 1 45%; text-align: center; max-height: 340px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between;">
+
+      <h3 style="visibility: hidden; height: 0; margin: 0;">Placeholder</h3> <!-- Fake header to align height -->
+      <div class="task-carousel-content" id="jira-carousel-view">
+        <div style="position: relative; display: inline-block;">
+          <img id="jira-task-image" src="" alt="Jira Task Preview" class="zoomable">
+          <span class="magnify-icon" onclick="enlargeImage(this)">🔍</span>
+        </div>
+        <p id="jira-task-desc" style="font-size: 14px; color: #ccc; margin-top: 10px;"></p>
+      </div>
+      <div class="task-carousel-controls" style="margin-top: 12px;">
+        <button onclick="prevJiraImage()">⬅</button>
+        <button onclick="nextJiraImage()">➡</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<!-- Modal Viewer -->
+<div id="imageModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center;">
+  <img id="modalImg" src="" style="max-width:90vw; max-height:90vh; border:4px solid white; border-radius:10px;">
+</div>
+<script>
+const jiraTaskImages = [
+  {
+    img: "../images/Task 3/jira1-2.png",
+    desc: `In Jira, requirements become User Stories in business-friendly terms, with detailed technical tasks raised under each (SQL views, mapping files, automation scripts). Tasks are assigned and tracked through a To Do → Doing → Done workflow for accountability and visibility.`
+  },
+  {
+    img: "../images/Task 3/infinity.png",
+    desc: `Infinity is a visual tracker linked to Jira tickets, with kanban boards, timelines and grouped views. It also records approvals, security checks and QA steps (build successful, access granted, script ready for deployment) so compliance and quality are met before each hand-off.`
+  }
+];
+
+
+
+let currentJiraImage = 0;
+
+function updateJiraCarousel() {
+  const { img, desc } = jiraTaskImages[currentJiraImage];
+  document.getElementById("jira-task-image").src = img;
+  document.getElementById("jira-task-desc").innerHTML = desc;
+}
+
+function nextJiraImage() {
+  currentJiraImage = (currentJiraImage + 1) % jiraTaskImages.length;
+  updateJiraCarousel();
+}
+
+function prevJiraImage() {
+  currentJiraImage = (currentJiraImage - 1 + jiraTaskImages.length) % jiraTaskImages.length;
+  updateJiraCarousel();
+}
+
+updateJiraCarousel();
+
+  function enlargeImage(el) {
+    const img = el.parentElement.querySelector('img');
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+    modalImg.src = img.src;
+    modal.style.display = "flex";
+  }
+
+  document.getElementById("imageModal").addEventListener("click", function () {
+    this.style.display = "none";
+  });
+
+  const taskImages = [
+    {
+      img: "", // For Gantt view (index 0), no image
+      desc: ""
+    },
+    {
+      img: "../images/Task 3/agile-sprint.png",
+      desc: "Agile sprints break delivery into short, focused cycles with clear deadlines, task visibility and progress tracking, keeping work on schedule and adaptable to change."
+    }
+  ];
+
+  let currentImage = 0;
+
+  function updateCarousel() {
+    const gantt = document.getElementById("gantt-view");
+    const carousel = document.getElementById("carousel-view");
+
+    if (currentImage === 0) {
+      gantt.style.display = "block";
+      carousel.style.display = "none";
+    } else {
+      gantt.style.display = "none";
+      carousel.style.display = "block";
+      const { img, desc } = taskImages[currentImage];
+      document.getElementById("task-image").src = img;
+      document.getElementById("task-desc").innerHTML = desc;
+    }
+  }
+
+  function nextImage() {
+    currentImage = (currentImage + 1) % taskImages.length;
+    updateCarousel();
+  }
+
+  function prevImage() {
+    currentImage = (currentImage - 1 + taskImages.length) % taskImages.length;
+    updateCarousel();
+  }
+
+  updateCarousel();
+</script>
+
+
+
+
+</body>
+</html>
