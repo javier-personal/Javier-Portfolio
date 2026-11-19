@@ -14,3 +14,8 @@ vendor/
 images/
 files/
 Resume/
+
+# Generated/hand-formatted page that Prettier cannot parse, and generator backups
+HTML/ocbc-intern.html
+tools/templates/ocbc-intern.html
+_build-backups/

@@ -1,10 +1,17 @@
 /* Shared behaviour: header (brand + nav, single source), to-top, lightbox, motion, icons. */
 (() => {
-  document.documentElement.classList.add('js');
+  const root = document.documentElement;
+  root.classList.add('js');
 
-  /* >>> Replace the picture and/or name here; every page picks it up <<< */
+  /* >>> Replace the picture and/or name here; every page picks it up <<<
+     The header avatar is a small circular crop of this photo (see .avatar in components.css);
+     clicking it opens the full photo in the shared lightbox below. */
   const ROOT = document.body.dataset.root || ''; // '' on index.html, '../' on pages in HTML/
-  const PROFILE = { src: ROOT + 'assets/profile.svg', name: 'Javier Tan' };
+  const PROFILE = {
+    src: ROOT + 'images/Main-Page/prof_pic_2.PNG',
+    name: 'Javier Tan',
+    alt: 'Javier Tan Wei-En',
+  };
   const PAGES = ROOT ? '' : 'HTML/';
   /* Same items, order and destinations as the original site (Intern opens internship.html first). */
   const NAV = [
@@ -53,7 +60,7 @@
         `<li><a href="${h}"${k === current ? ' aria-current="page"' : ''}>${t}</a></li>`
     ).join('');
     header.innerHTML = `
-      <a class="brand" href="index.html" aria-label="${PROFILE.name}, home"><img class="avatar" src="${PROFILE.src}" alt="" width="44" height="44"><span class="brand-name">${PROFILE.name}</span></a>
+      <div class="brand"><button type="button" class="avatar" aria-label="View ${PROFILE.name}'s profile photo" aria-haspopup="dialog"><img src="${PROFILE.src}" alt="" width="1535" height="1024" decoding="async"></button><a class="brand-name" href="index.html" aria-label="${PROFILE.name}, home">${PROFILE.name}</a></div>
       <nav class="nav-glass" aria-label="Primary"><ul>${links}</ul></nav>
       <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">${icon('menu')}</button>
       <div class="drawer-backdrop" id="backdrop"></div>
@@ -104,9 +111,21 @@
   document.body.appendChild(lb);
   const lbImg = lb.querySelector('img'),
     cap = lb.querySelector('.lb-caption');
+  const lbNav = [lb.querySelector('.lb-prev'), lb.querySelector('.lb-next')];
   let group = [],
     idx = 0,
     opener = null;
+  const setSingle = (single) => {
+    /* Profile photo only: one image (no prev/next, no counter), animated, background scroll locked.
+       Gallery lightboxes keep their original behaviour. */
+    lbNav.forEach((b) => (b.hidden = single));
+    lb.classList.toggle('lb-profile', single);
+  };
+  const open = () => {
+    lb.classList.add('open');
+    root.classList.toggle('lb-open', lb.classList.contains('lb-profile')); // scroll lock (components.css)
+    lb.querySelector('.lb-close').focus();
+  };
   const show = () => {
     const im = group[idx];
     lbImg.src = im.currentSrc || im.src;
@@ -115,6 +134,7 @@
   };
   const close = () => {
     lb.classList.remove('open');
+    root.classList.remove('lb-open');
     opener && opener.focus();
   };
   const step = (d) => {
@@ -123,15 +143,30 @@
     show();
   };
   document.addEventListener('click', (e) => {
+    /* Header avatar -> the full professional photograph, as a one-image lightbox. */
+    const av = e.target.closest('.site-header .avatar');
+    if (av) {
+      group = [{ src: PROFILE.src, currentSrc: PROFILE.src, alt: PROFILE.alt }];
+      idx = 0;
+      opener = av;
+      setSingle(true);
+      show();
+      open();
+      return;
+    }
     const z = e.target.closest('.zoomable');
     if (!z) return;
     const scope = z.closest('[data-lightbox-group]') || document;
-    group = [...scope.querySelectorAll('.zoomable img')];
+    /* A nested [data-lightbox-group] (e.g. the Photography tile) is its own set, not part of the outer one.
+       Images with no group wrapper at all form the page-level set (they used to be dropped, so the lightbox never opened). */
+    group = [...scope.querySelectorAll('.zoomable img')].filter(
+      (i) => (i.closest('[data-lightbox-group]') || document) === scope
+    );
     idx = group.indexOf(z.querySelector('img'));
     opener = z;
+    setSingle(false);
     show();
-    lb.classList.add('open');
-    lb.querySelector('.lb-close').focus();
+    open();
   });
   lb.querySelector('.lb-close').onclick = close;
   lb.querySelector('.lb-prev').onclick = () => step(-1);
@@ -145,7 +180,7 @@
     if (e.key === 'ArrowRight') step(1);
     if (e.key === 'ArrowLeft') step(-1);
     if (e.key === 'Tab') {
-      const f = [...lb.querySelectorAll('button')];
+      const f = [...lb.querySelectorAll('button')].filter((b) => !b.hidden);
       const i = f.indexOf(document.activeElement);
       e.preventDefault();
       f[(i + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus();
@@ -160,15 +195,14 @@
     ['.page-title, .intro-copy > h1, .tagline', 'down'],
     ['.page-wrap > .lead, .filters, .result-count, .stats-head, .s-projects .head', 'up'],
     ['.gallery > .card, .facts > .fact, .project-hero, .section-title, .gallery-count', 'up'],
-    ['.page-end, .form-card, .contact-info, .resume-card, .pdf-viewer', 'up'],
-    ['.intro-card, .intern, .about-card, .photo-row .item, .touch', 'up'],
+    ['.page-end, .form-card, .contact-info, .resume-viewer, .cred', 'up'],
+    ['.intro-card, .work-timeline, .intern, .about-card, .photo-row .item, .touch', 'up'],
     ['.back-link, .alt > .ph, .work-grid > .ph', 'left'],
     ['.intro-photo, .alt > .copy, .work-grid > .copy, .intern .info > div', 'right'],
     ['.shots > .shot', 'zoom'],
     ['.chips li, .stat', 'pop'],
   ];
   const mq = matchMedia('(prefers-reduced-motion: reduce)');
-  const root = document.documentElement;
   let io = null,
     tagged = [];
   const reveal = (entries) => {

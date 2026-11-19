@@ -17,7 +17,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;
-  padding: 0.35rem 1.1rem 0.35rem 0.35rem;
+  padding: 0.35rem 0 0.35rem 0.35rem;
   min-height: 52px;
   color: var(--ink);
   text-decoration: none;
@@ -36,18 +36,54 @@
 .brand:hover {
   background: var(--glass-strong);
 }
+/* Profile photo avatar: a button (opens the lightbox) holding a circular crop of prof_pic_2.PNG.
+   The photo is landscape (1535x1024), so the img is scaled up and offset to frame the face:
+   a 720px square starting at x=398 of the original -> width 213%, left -55.3%.
+   Aspect ratio is preserved (height:auto); tweak left/width/top below to re-frame. */
 .avatar {
+  position: relative;
+  display: block;
+  flex: none;
   width: 44px;
   height: 44px;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
   border-radius: 50%;
-  object-fit: cover;
   aspect-ratio: 1;
   border: 2px solid #fff;
   background: var(--lavender);
   box-shadow: 0 1px 4px rgba(36, 33, 42, 0.2);
+  cursor: zoom-in;
+  transition: box-shadow 0.2s;
+}
+.avatar img {
+  position: absolute;
+  top: 0;
+  left: -55.3%;
+  width: 213.2%;
+  max-width: none;
+  height: auto;
+}
+.avatar:hover {
+  box-shadow: 0 2px 8px rgba(36, 33, 42, 0.35);
+}
+.avatar:focus-visible {
+  border-radius: 50%;
 }
 .brand-name {
+  display: inline-flex;
+  align-items: center;
+  align-self: stretch;
+  margin: -0.35rem 0;
+  padding: 0.35rem 1.1rem 0.35rem 0;
+  color: inherit;
+  text-decoration: none;
   white-space: nowrap;
+}
+.brand-name:focus-visible {
+  border-radius: 999px;
+  outline-offset: -2px;
 }
 
 .nav-glass {
@@ -386,6 +422,49 @@ body.menu-open #menuBtn {
   border-radius: 10px;
   box-shadow: var(--shadow-lg);
   background: #fff;
+}
+/* Profile-photo lightbox only (.lb-profile, set in site.js): fade + gentle zoom, background scroll locked.
+   The gallery lightbox above is unchanged. */
+.lightbox.lb-profile {
+  display: flex;
+  overscroll-behavior: contain;
+  touch-action: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.25s ease,
+    visibility 0s linear 0.25s;
+}
+.lightbox.lb-profile.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    opacity 0.25s ease,
+    visibility 0s;
+}
+.lightbox.lb-profile img {
+  object-fit: contain;
+  scale: 0.94;
+  transition: scale 0.3s cubic-bezier(0.22, 0.8, 0.3, 1);
+}
+.lightbox.lb-profile.open img {
+  scale: 1;
+}
+.lb-btn[hidden] {
+  display: none;
+}
+html.lb-open {
+  overflow: hidden;
+  scrollbar-gutter: stable; /* keeps the page from shifting when the scrollbar is hidden */
+}
+@media (prefers-reduced-motion: reduce) {
+  .lightbox.lb-profile,
+  .lightbox.lb-profile.open,
+  .lightbox.lb-profile img {
+    transition: none;
+  }
 }
 .lb-btn {
   position: absolute;

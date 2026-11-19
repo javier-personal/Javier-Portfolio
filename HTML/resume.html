@@ -6,10 +6,11 @@
     <title>Resume | Javier Tan</title>
     <meta name="description" content="Preview and download Javier Tan's resume." />
     <link rel="stylesheet" href="../css/base.css?v=3" />
-    <link rel="stylesheet" href="../css/components.css?v=3" />
-    <link rel="stylesheet" href="../css/pages.css?v=3" />
+    <link rel="stylesheet" href="../css/components.css?v=4" />
+    <link rel="stylesheet" href="../css/pages.css?v=6" />
+    <link rel="stylesheet" href="../css/credentials.css?v=3" />
   </head>
-  <body class="glass-page" data-root="../" data-nav="resume.html" data-pdf="../files/Javier Tan Wei En_Resume.pdf">
+  <body class="glass-page" data-root="../" data-nav="resume.html">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header" id="site-header"></header>
     <main id="main" class="page-wrap">
@@ -19,22 +20,160 @@
           Explore my journey in data science, visualization, and programming! Download my resume to
           learn more about my skills, projects, and the tools I use to deliver impactful results.
         </p>
-        <div class="resume-actions">
-          <a class="btn" id="dl" href="../files/Javier Tan Wei En_Resume.pdf" download
-            ><span data-icon="download"></span>Download Resume</a
+        <div class="format-switch" role="tablist" aria-label="Resume format" data-active="0">
+          <button
+            type="button"
+            role="tab"
+            id="tab-professional"
+            class="format-tab"
+            aria-selected="true"
+            aria-controls="viewer"
+            data-pdf="../files/Javier%20Tan%20Wei%20En_Resume.pdf"
+            data-file="Javier Tan Wei En_Resume.pdf"
           >
+            <span class="format-name">Professional</span>
+            <span class="format-desc">Visually polished for easy reading</span>
+          </button>
+          <button
+            type="button"
+            role="tab"
+            id="tab-ats"
+            class="format-tab"
+            aria-selected="false"
+            tabindex="-1"
+            aria-controls="viewer"
+            data-pdf="../files/Javier%20Tan%20Wei%20En_Resume_ATS.pdf"
+            data-file="Javier Tan Wei En_Resume_ATS.pdf"
+          >
+            <span class="format-name">ATS-Friendly</span>
+            <span class="format-desc">Design optimised for ATS parsing</span>
+          </button>
+        </div>
+        <div class="resume-actions">
           <a
             class="btn btn-glass"
             id="open"
-            href="../files/Javier Tan Wei En_Resume.pdf"
+            href="../files/Javier%20Tan%20Wei%20En_Resume.pdf"
             target="_blank"
             rel="noopener"
-            >Open in new tab</a
+            >Open Preview</a
+          >
+          <a
+            class="btn"
+            id="dl"
+            href="../files/Javier%20Tan%20Wei%20En_Resume.pdf"
+            download="Javier Tan Wei En_Resume.pdf"
+            ><span data-icon="download"></span>Download PDF</a
           >
         </div>
       </section>
-      <section class="pdf-viewer" aria-label="Resume preview" id="viewer">
-        <p class="pdf-status" id="pdfStatus" role="status">Loading resume preview…</p>
+
+      <!--
+        DOCUMENTATION: documentations/resume-format-selector.md
+        The two PDF paths live ONLY on the two tab buttons below (data-pdf / data-file).
+        JS/resume.js reads them; nothing else in the page or script hard-codes a resume path.
+        The Open Preview / Download PDF hrefs below are the no-JS default (Professional).
+      -->
+      <section class="resume-viewer" aria-label="Resume preview and downloads">
+        
+        <div
+          class="pdf-viewer"
+          id="viewer"
+          role="tabpanel"
+          tabindex="0"
+          aria-labelledby="tab-professional"
+          aria-busy="true"
+        >
+          <p class="pdf-status" id="pdfStatus" role="status">Loading resume preview…</p>
+        </div>
+        
+      </section>
+
+      <!--
+        DOCUMENTATION: every certificate and award card below has an id (cert-... / award-...).
+        Full register, facts and the plan for a future "View" button (opens the certificate or award
+        image in the existing lightbox): documentation/09_CREDENTIALS.md
+        No images or "View" buttons exist yet on purpose.
+      -->
+      <section class="cred glass glass-strong" id="certifications" aria-labelledby="cert-h">
+        <p class="eyebrow">Credentials</p>
+        <h2 id="cert-h">Certifications</h2>
+        <ul class="cred-grid three">
+          <li class="cred-card" id="cert-ccna">
+            <span class="cred-issuer">Cisco</span>
+            <h3>CCNA</h3>
+            <p class="meta">Cisco Certified Network Associate</p>
+          </li>
+          <li class="cred-card" id="cert-ml-decision-trees">
+            <span class="cred-issuer">LinkedIn</span>
+            <h3>Machine Learning with Python: Decision Trees</h3>
+            <p class="meta">2024</p>
+          </li>
+          <li class="cred-card" id="cert-python-quick-start">
+            <span class="cred-issuer">LinkedIn</span>
+            <h3>Python Quick Start</h3>
+            <p class="meta">2023</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="cred glass glass-strong" id="awards" aria-labelledby="awards-h">
+        <p class="eyebrow">Recognition</p>
+        <h2 id="awards-h">Awards &amp; Achievements</h2>
+        <ul class="cred-grid two">
+          <li class="cred-card" id="award-ngee-ann">
+            <div class="cred-head">
+              <h3>Ngee Ann Kongsi Study Award</h3>
+              <ul class="cred-years" aria-label="Years awarded">
+                <li>2024</li>
+                <li>2025</li>
+              </ul>
+            </div>
+            <p>Recognition for outstanding academic performance and achievements.</p>
+          </li>
+          <li class="cred-card" id="award-edusave">
+            <div class="cred-head">
+              <h3>Edusave Award</h3>
+              <ul class="cred-years" aria-label="Years awarded">
+                <li>2019</li>
+                <li>2024</li>
+                <li>2026</li>
+              </ul>
+            </div>
+            <p>Achieved top 25% in academics.</p>
+          </li>
+          <li class="cred-card" id="award-disciplinary-minds">
+            <div class="cred-head">
+              <h3>Disciplinary Minds Award</h3>
+              <ul class="cred-years" aria-label="Year awarded">
+                <li>2021</li>
+              </ul>
+            </div>
+            <p>
+              Outstanding achievement in the Singapore-Cambridge GCE N-Level examination: achieved a
+              score of 8 (5 being the best possible).
+            </p>
+          </li>
+          <li class="cred-card" id="award-colours">
+            <div class="cred-head">
+              <h3>Colours Award</h3>
+              <ul class="cred-years" aria-label="Year awarded">
+                <li>2019</li>
+              </ul>
+            </div>
+            <p>
+              Sporting excellence. Consecutive gold medallist, achieving top 14% nationwide across
+              70,000 athletes.
+            </p>
+          </li>
+        </ul>
+        <div class="cred-feature" id="award-hackathon">
+          <div>
+            <h3>Third place, OCBC Ignite Hackathon</h3>
+            <p>Placed third in a team of five among about 170 polytechnic students.</p>
+          </div>
+          <a class="cred-link" href="data-storytelling-hackathon-school.html">View project</a>
+        </div>
       </section>
     </main>
     <footer class="site-footer glass">
@@ -43,8 +182,8 @@
       </p>
     </footer>
     <button class="to-top" aria-label="Back to top"></button>
-    <script src="../JS/site.js?v=3"></script>
+    <script src="../JS/site.js?v=5"></script>
     <script src="../vendor/pdfjs/pdf.js?v=3"></script>
-    <script src="../JS/resume.js?v=3"></script>
+    <script src="../JS/resume.js?v=5"></script>
   </body>
 </html>

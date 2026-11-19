@@ -41,65 +41,69 @@
   addEventListener('load', layout);
   layout();
 
-  /* Reflection book: content is embedded from data/reflections.json at build time (works from a folder and on any static host) */
-  const open = $('#bookOpen'),
-    openBtn = $('#bookOpenBtn'),
-    tabs = $('#tabs'),
-    list = $('#entries'),
-    dlg = $('#dlg');
-  let data,
-    filter = 'all';
-  const esc = (s) => s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
-  const draw = () => {
-    tabs.innerHTML =
-      [...data.tasks.map((t) => [t.id, t.label]), ['all', 'Show All']]
+  /* Reflection book: content is embedded from data/reflections.json at build time (works from a folder and on any static host).
+     It is currently hidden: the <section id="reflection"> in ocbc-intern.html is inside an HTML comment, so #book, #tabs, #entries etc.
+     do not exist. Everything below runs only when the book is on the page, so un-commenting the section brings it back with no JS change. */
+  if ($('#book')) {
+    const open = $('#bookOpen'),
+      openBtn = $('#bookOpenBtn'),
+      tabs = $('#tabs'),
+      list = $('#entries'),
+      dlg = $('#dlg');
+    let data,
+      filter = 'all';
+    const esc = (s) => s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
+    const draw = () => {
+      tabs.innerHTML =
+        [...data.tasks.map((t) => [t.id, t.label]), ['all', 'Show All']]
+          .map(
+            ([id, l]) =>
+              `<button class="tab" aria-pressed="${filter === id}" data-f="${id}">${l}</button>`
+          )
+          .join('') + '<span class="sp"></span><button class="tab" id="closeBook">Close</button>';
+      const shown = data.entries.filter((e) => filter === 'all' || e.task === filter);
+      list.innerHTML = shown
         .map(
-          ([id, l]) =>
-            `<button class="tab" aria-pressed="${filter === id}" data-f="${id}">${l}</button>`
+          (e) =>
+            `<div class="entry"><button data-i="${data.entries.indexOf(e)}" aria-haspopup="dialog"><span>${esc(e.title)}</span>${icon('zoom')}<span class="sr-only">Read reflection</span></button></div>`
         )
-        .join('') + '<span class="sp"></span><button class="tab" id="closeBook">Close</button>';
-    const shown = data.entries.filter((e) => filter === 'all' || e.task === filter);
-    list.innerHTML = shown
-      .map(
-        (e) =>
-          `<div class="entry"><button data-i="${data.entries.indexOf(e)}" aria-haspopup="dialog"><span>${esc(e.title)}</span>${icon('zoom')}<span class="sr-only">Read reflection</span></button></div>`
-      )
-      .join('');
-  };
-  data = JSON.parse(document.getElementById('reflection-data').textContent);
-  draw();
-  openBtn.onclick = () => {
-    openBtn.hidden = true;
-    open.hidden = false;
-    openBtn.setAttribute('aria-expanded', true);
-    list.focus();
-  };
-  tabs.onclick = (e) => {
-    const b = e.target.closest('button');
-    if (!b) return;
-    if (b.id === 'closeBook') {
-      open.hidden = true;
-      openBtn.hidden = false;
-      openBtn.setAttribute('aria-expanded', false);
-      openBtn.focus();
-    } else {
-      filter = b.dataset.f;
-      draw();
-      tabs.querySelector(`[data-f="${filter}"]`).focus();
-    }
-  };
-  list.onclick = (e) => {
-    const b = e.target.closest('button[data-i]');
-    if (!b) return;
-    const en = data.entries[+b.dataset.i];
-    $('#dlgTitle').textContent = en.title;
-    $('#dlgBody').innerHTML = en.body
-      .map((p) => `<p>${p.label ? `<strong>${esc(p.label)}:</strong> ` : ''}${esc(p.text)}</p>`)
-      .join('');
-    dlg.showModal();
-  };
-  $('#dlgClose').onclick = () => dlg.close();
-  dlg.addEventListener('click', (e) => {
-    if (e.target === dlg) dlg.close();
-  });
+        .join('');
+    };
+    data = JSON.parse(document.getElementById('reflection-data').textContent);
+    draw();
+    openBtn.onclick = () => {
+      openBtn.hidden = true;
+      open.hidden = false;
+      openBtn.setAttribute('aria-expanded', true);
+      list.focus();
+    };
+    tabs.onclick = (e) => {
+      const b = e.target.closest('button');
+      if (!b) return;
+      if (b.id === 'closeBook') {
+        open.hidden = true;
+        openBtn.hidden = false;
+        openBtn.setAttribute('aria-expanded', false);
+        openBtn.focus();
+      } else {
+        filter = b.dataset.f;
+        draw();
+        tabs.querySelector(`[data-f="${filter}"]`).focus();
+      }
+    };
+    list.onclick = (e) => {
+      const b = e.target.closest('button[data-i]');
+      if (!b) return;
+      const en = data.entries[+b.dataset.i];
+      $('#dlgTitle').textContent = en.title;
+      $('#dlgBody').innerHTML = en.body
+        .map((p) => `<p>${p.label ? `<strong>${esc(p.label)}:</strong> ` : ''}${esc(p.text)}</p>`)
+        .join('');
+      dlg.showModal();
+    };
+    $('#dlgClose').onclick = () => dlg.close();
+    dlg.addEventListener('click', (e) => {
+      if (e.target === dlg) dlg.close();
+    });
+  }
 })();

@@ -1,0 +1,50 @@
+{
+  "note": "Baseline of HTML pages the generator may overwrite. Managed by tools/build.js.",
+  "pages": {
+    "HTML/projects.html": {
+      "sha256": "53f01d57418b4985ee8617e6d90b9c22c1e2cd288a0fd09e7a7ebe8b14db9ff7"
+    },
+    "HTML/dses.html": {
+      "sha256": "1002ec64654b23a5787b99a76b414a015efb82bbc0390425a62d098afaaf4739"
+    },
+    "HTML/full-stack-web-development.html": {
+      "sha256": "d01585b16f191cea8d61fde3e97c118b9cd27f55ccdde46de9f3e258fbae18da"
+    },
+    "HTML/quantitative-analysis.html": {
+      "sha256": "ceba567c6e9815d308f73cac799192ce7c43d272ee31c76b7726eb2fee7c82e8"
+    },
+    "HTML/data-warehouse.html": {
+      "sha256": "7b26ad2ae2e20b93b1833ccc32fc3bee92daa0aafd9bdfcb5ba0f1870566d396"
+    },
+    "HTML/data-visualization-analytics.html": {
+      "sha256": "999fb267f9dd0b24a31c97904fd9a5da6e618dcd8c1fdd4692e1aa2563245759"
+    },
+    "HTML/data-engineering-cloud.html": {
+      "sha256": "40eb4fe4b30a735fc005c76de5ca79db39c45cc19ed48bf60dbbbb351b92de3c"
+    },
+    "HTML/ux-prototyping.html": {
+      "sha256": "6058fee0eba770d04dfa8d2133eca85ca17e395ef746a50e971ef8955090bbd6"
+    },
+    "HTML/data-storytelling-hackathon-school.html": {
+      "sha256": "fc3549f014f66b4d77b7aad331cd6b764252602555a88eb41624d8ce1c31795f"
+    },
+    "HTML/data-storytelling-idl.html": {
+      "sha256": "3454c1689e56e29a5e2c60274091d698fb906a08d03b45eb31bde7f0d3114e6b"
+    },
+    "HTML/machine-learning.html": {
+      "sha256": "39fc3c0fba0fa13cc02238f943ae0d835a479ca79419d091c25583b437cd1407"
+    },
+    "HTML/text-analytics.html": {
+      "sha256": "0c1f32718459ae776327472eec06dcd72633825bfb6f18dad05a6926b296b4a9"
+    },
+    "HTML/data-mining-analytics.html": {
+      "sha256": "c9a1736f6c3301e1b1ccbf8ccbb87354a5457d427682079bb078ce32339a2dfa"
+    },
+    "HTML/internship.html": {
+      "sha256": "d565d0836a52fc547359f9cb74d6cd17788d3877dbfa07aa08cd6a11392a70e5"
+    },
+    "HTML/ocbc-intern.html": {
+      "sha256": "bce1934324dc429b612e9a124e3b209555d98d82594ce295daa09b0376e4a216"
+    }
+  }
+}

@@ -2,7 +2,7 @@
 
 Plain HTML/CSS/JS. No framework, no server needed (open `index.html` or host the folder anywhere).
 
-> **HOLD: do not deploy yet.** `images/Intern/Settlement Agreement NYSS (Template)_JAVIER_CNX15311.pdf` would become publicly downloadable. See `PRESERVATION.md`. Deployment needs the owner's explicit approval.
+> **The HTML pages are the source of truth.** `node tools/build.js` only checks and reports; `--write` never overwrites a hand-edited page. Read `documentation/08_BUILD_SYSTEM.md` before using it.
 
 ## Structure
 
@@ -15,10 +15,10 @@ css/    base.css (tokens, background, glass)  components.css (header, buttons, f
 JS/     site.js (shared header + brand, lightbox, to-top)  filters.js  ocbc.js  resume.js
         script.js (original, still used by the unchanged pages)
 data/   projects.json (all project info)  reflections.json (reflection book)
-assets/ profile.svg     temporary profile picture
+assets/ profile.svg     former temporary avatar (unused; the header now uses images/Main-Page/prof_pic_2.PNG)
 vendor/ pdfjs/          Mozilla pdf.js (resume preview)
 images/ files/ Resume/  original assets, untouched
-tools/  build.js + templates/   regenerates the project pages from data/*.json
+tools/  build.js (safe generator: check-only by default) + templates/ + build-lock.json
 .prettierrc.json  package.json   one formatting style for all code (npm run build = generate + format)
 _original-pages/        your original versions of every page that was rebuilt (for rollback; not for deployment)
 PRESERVATION.md         OCBC preservation record with checksums
@@ -26,9 +26,13 @@ PRESERVATION.md         OCBC preservation record with checksums
 
 ## Everyday edits
 
-- **Profile picture / name:** edit `PROFILE` at the top of `JS/site.js` (one place, every page updates). Put your photo in `assets/`.
-- **Project text, tools, results, images:** edit `data/projects.json`, then run `node tools/build.js` (Node 18+; no packages needed). Output is plain HTML.
-- **Reflections:** edit `data/reflections.json`, then run `node tools/build.js`.
+- **Profile picture / name:** edit `PROFILE` at the top of `JS/site.js` (one place, every page updates). The header avatar is a circular crop of `images/Main-Page/prof_pic_2.PNG`; clicking it opens the full photo in the lightbox. To re-frame the crop, edit `.avatar img` (`left`, `width`) in `css/components.css`.
+- **Resume page formats:** the two PDF paths are on the two tab buttons in `HTML/resume.html` (`data-pdf`, `data-file`): Professional = `files/Javier Tan Wei En_Resume.pdf`, ATS-Friendly = `files/Javier Tan Wei En_Resume_ATS.pdf`. Replace a PDF by overwriting the file; keep the names or update the button.
+- **Project text, tools, results, images:** edit the page in `HTML/` directly (it is the source of truth). To generate a NEW page, add it to `data/projects.json`, run `node tools/build.js` to review and then `node tools/build.js --write` (Node 18+). Hand-edited pages are protected, and `personal-finance-tracker.html` is hand-maintained.
+- **Reflections:** edit `data/reflections.json`, then review with `node tools/build.js` and apply with `--write` (the OCBC page is protected if you have edited it by hand).
+- **Resume page credentials:** edit `HTML/resume.html` (Certifications and Awards & Achievements sections). Every card has an id; the register and the plan for the future "View" (lightbox) button are in `documentation/09_CREDENTIALS.md`.
+- **Reflection section (OCBC page):** hidden on purpose inside an HTML comment in `HTML/ocbc-intern.html` (and `tools/templates/ocbc-intern.html`). To bring it back, delete the line `<!-- Hidden for now not needed for hiring purposes` and the matching `-->` after `</div>` near the footer. `JS/ocbc.js` already copes with it being hidden or visible.
+- **Homepage Photography tile:** it is a static tile in `index.html` (`images/Main-Page/photography.jpeg`). `JS/photography.js` is inactive (empty list); do not add the same photo to it or the tile will appear twice.
 - **Homepage text/photos:** edit `index.html` directly.
 - **Code style:** all CSS, JS, JSON and rebuilt HTML are formatted with Prettier using `.prettierrc.json` (`npm install` then `npm run format`). Original untouched files are listed in `.prettierignore` and are never reformatted.
 - **After changing any CSS/JS:** bump `?v=2` in the page links (in `tools/build.js` and `index.html`) so browsers do not serve an old cached copy.

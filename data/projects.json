@@ -101,11 +101,17 @@
         },
         {
           "src": "images/ADEV/adev-frontend.jpeg",
-          "caption": "Front-End Development (1/2)"
+          "caption": "Front-End Development (1/3)"
         },
         {
           "src": "images/ADEV/adev-update-product.jpeg",
-          "caption": "Front-End Development (2/2)"
+          "caption": "Front-End Development (2/3)"
+        },
+        {
+          "src": "images/Project-Cards/web.jpeg",
+          "caption": "Front-End Development (3/3)",
+          "alt": "Front-End Development (3/3) Developed a food menu website",
+          "label": "Front-End Development (3/3)"
         }
       ]
     },
@@ -209,7 +215,7 @@
     "relevant": true,
     "mini": false,
     "detail": {
-      "contribution": "Cleaned and transformed the data in KNIME, formed four K-Means clusters, trained a linear regression model and visualised results in Power BI.",
+      "contribution": "Cleaned and transformed the data in KNIME, formed four K-Means clusters, trained a linear regression model to predict customer ratings for restaurants. Created Power BI dashboards to visualise model residuals, assess model fit & develop analytical visuals to support data-driven decision-making.",
       "tools": ["KNIME", "Power BI", "K-Means", "Linear regression"],
       "result": {
         "text": "The linear regression model predicting restaurant ratings reached an R² of 0.823 with a mean absolute error of 0.116.",
@@ -227,7 +233,8 @@
         },
         {
           "src": "images/DAVA/revamped-dashboard.png",
-          "caption": "K-Means Clustering (2/2)"
+          "caption": "K-Means Clustering (2/2) & Dashboard Analytics",
+          "alt": "K-Means Clustering (2/2)"
         },
         {
           "src": "images/DAVA/dava-model-workflow.jpeg",
@@ -347,40 +354,15 @@
   {
     "slug": "personal-finance-tracker",
     "title": "Personal Finance Tracker",
-    "summary": "Created an Excel-based personal finance tracker using formulas to monitor, categorize, and sum up spending for effective budget management.",
+    "summary": "A full-stack personal finance application built with Next.js, React and Supabase, featuring expense tracking, budgeting, savings management and an analytics dashboard.",
     "image": "images/Project-Cards/accounting.jpeg",
     "alt": "Personal finance tracker",
     "recent": false,
     "relevant": false,
     "mini": true,
-    "detail": {
-      "contribution": "Built an Excel finance tracker with validation formulas and linked it to Tableau dashboards through Google Drive.",
-      "tools": ["Excel", "Google Sheets", "Tableau"],
-      "result": null,
-      "gallery": [
-        {
-          "src": "images/Accounting/transaction-records.jpeg",
-          "caption": "Transaction Records & Overall Finance (1/2)"
-        },
-        {
-          "src": "images/Accounting/finance.jpeg",
-          "caption": "Transaction Records & Overall Finance (2/2)"
-        },
-        {
-          "src": "images/Accounting/debt-owed.jpeg",
-          "caption": "Debt Owed/Receivable (1/2)"
-        },
-        {
-          "src": "images/Accounting/debt-receive.jpeg",
-          "caption": "Debt Owed/Receivable (2/2)"
-        },
-        {
-          "src": "images/Accounting/accounting-dashboard.jpeg",
-          "caption": "Dashboarding & Analytical Insights"
-        }
-      ]
-    },
-    "cardSummary": "Excel finance tracker with validation formulas to categorise and total spending, linked to Tableau dashboards via Google Drive."
+    "cardSummary": "Full-stack personal finance application featuring expense tracking, budgeting, savings management and an analytics dashboard.",
+    "pageSource": "html",
+    "note": "HTML/personal-finance-tracker.html is hand-maintained (custom development-journey timeline) and is never generated. This entry only feeds the card on the Projects page. The earlier Excel/Tableau data was removed because the page no longer describes that project."
   },
   {
     "slug": "data-storytelling-hackathon-school",
@@ -392,13 +374,13 @@
     "relevant": true,
     "mini": false,
     "detail": {
-      "contribution": "Cleaned and integrated branch and call data, built visualisations and clustering/predictive models, and combined them into a data story with recommendations for OCBC, earning the team third place in the Hackathon.",
+      "contribution": "Cleaned and integrated branch and call data, built visualisations and clustering/predictive models, and combined them into a data story with recommendations for OCBC, earning the team Third place in the Hackathon.",
       "tools": ["Tableau", "Clustering", "Predictive modelling"],
       "result": null,
       "gallery": [
         {
           "src": "images/DAST/dast-hackathon-distinction.jpeg",
-          "caption": "OCBC Ignite Hackathon 2024/School Individual Project"
+          "caption": "OCBC Ignite Hackathon 2024"
         },
         {
           "src": "images/DAST/dast-cleaning.jpeg",
@@ -427,8 +409,10 @@
       ]
     },
     "cardTitle": "Data Storytelling (OCBC Hackathon Ignite 2025)",
-    "pageSummary": "Represented Temasek Polytechnic in a OCBC Ignite Hackathon. Performed data cleaning and integration, developed visualizations, and combined them into a cohesive data story using Tableau to deliver actionable insights to stakeholders through cross-collaboration with other domains.",
-    "cardSummary": "Third place at the OCBC Ignite Hackathon, representing Temasek Polytechnic: integrated branch and call data into a Tableau data story with recommendations."
+    "pageSummary": "Represented Temasek Polytechnic in a OCBC Ignite Hackathon. Performed data cleaning and integration, developed visualizations, and combined them into a cohesive data story using Tableau to deliver actionable insights to stakeholders through cross-collaboration with other domains. Secured third place in a polytechnic-wide hackathon, competing as part of a five-member team against approximately 170 students.",
+    "cardSummary": "Third place at the OCBC Ignite Hackathon, representing Temasek Polytechnic: integrated branch and call data into a Tableau data story with recommendations.",
+    "pageSummaryHtml": "<span class=\"gold-text gold-soft\">Represented Temasek Polytechnic</span> in a <span class=\"gold-text gold-strong\">OCBC Ignite Hackathon.</span> Performed data cleaning and integration, developed visualizations, and combined them into a cohesive data story using Tableau to deliver actionable insights to stakeholders through cross-collaboration with other domains. Secured <span class=\"gold-text gold-strong\">third place</span> in a polytechnic-wide hackathon, competing as part of a five-member team against approximately 170 students.",
+    "cardSummaryHtml": "<span class=\"gold-text gold-strong\">Third place</span> at the <span class=\"gold-text gold-strong\">OCBC Ignite Hackathon</span>, <span class=\"gold-text gold-soft\">Representing Temasek Polytechnic</span>, integrated branch and call data into a Tableau data story with recommendations."
   },
   {
     "slug": "data-storytelling-idl",
